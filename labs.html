@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labs &amp; Universities | Research for Everyone</title>
+  <meta name="description" content="Information for labs and universities about partnering with Research for Everyone: risk controls, insurance, economics and how to apply." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Labs & Universities",
+    "url": "https://researchforeveryone.org/labs.html",
+    "description": "Learn how your lab can host supervised student sessions through Research for Everyone, including risk controls, paperwork and revenue models."
+  }
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Research for Everyone logo" />
+        <span>Research for Everyone</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="students.html">Students</a></li>
+          <li><a href="labs.html" class="active">Labs</a></li>
+          <li><a href="passport.html">Passport</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Theme toggle button -->
+    </div>
+  </header>
+  <main>
+    <!-- Hero -->
+    <section class="hero labs-hero">
+      <div class="container">
+        <h1><span id="hero-typed" data-phrases="Partner with us|Off‑peak revenue|Join the network"></span></h1>
+        <p>Off‑peak revenue on idle capacity. Pre‑trained visitors. Supervision and admin handled. Community impact metrics.</p>
+        <div class="cta-row">
+          <a href="#partner-form" class="btn primary">Apply to Partner</a>
+        </div>
+      </div>
+    </section>
+    <!-- Partners Slider on labs page to highlight current supporters -->
+    <section class="reveal partners-section" id="partners">
+      <div class="container">
+        <h2>Trusted by leading labs</h2>
+        <p class="sub">Here are some of the organisations supporting safe student access.</p>
+        <div class="partner-slider">
+          <div class="slide-track">
+            <img src="assets/img/partners/partner1.png" alt="Partner 1" />
+            <img src="assets/img/partners/partner2.png" alt="Partner 2" />
+            <img src="assets/img/partners/partner3.png" alt="Partner 3" />
+            <!-- duplicate for seamless loop -->
+            <img src="assets/img/partners/partner1.png" alt="Partner 1" />
+            <img src="assets/img/partners/partner2.png" alt="Partner 2" />
+            <img src="assets/img/partners/partner3.png" alt="Partner 3" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Risk, Insurance, Economics -->
+    <section class="reveal">
+      <div class="container">
+        <h2>Why host supervised sessions?</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Risk controls</h3>
+            <p>We operate only within BSL‑1 and basic digital fabrication tools. We enforce strict supervision ratios, follow your rules first, and maintain detailed incident reporting and named chaperones.</p>
+          </div>
+          <div class="feature">
+            <h3>Insurance & paperwork</h3>
+            <p>We handle certificate tracking, waivers and visitor badges, sign‑in/out logs and guardian consent forms so your staff can focus on science.</p>
+          </div>
+          <div class="feature">
+            <h3>Economics</h3>
+            <p>Choose from two revenue models: share the ticket revenue from supervised sessions or receive a fixed facility fee with consumables billed at cost.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Operational Flow -->
+    <section class="reveal">
+      <div class="container">
+        <h2>Operational flow</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Request to partner</h3>
+            <p>Submit a short application so we can understand your facility, capacity and policies.</p>
+          </div>
+          <div class="feature">
+            <h3>Alignment</h3>
+            <p>We work with you to define the allowed equipment, supervision ratios and SOPs. Our Passport training aligns with your safety policies.</p>
+          </div>
+          <div class="feature">
+            <h3>Pilot afternoons</h3>
+            <p>Run a couple of off‑peak supervised sessions to validate the process, collect feedback and adjust as needed.</p>
+          </div>
+          <div class="feature">
+            <h3>Review & scale</h3>
+            <p>After pilots, we review incident logs, satisfaction and unit economics before expanding capacity or scope.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Sample Sessions -->
+    <section class="reveal">
+      <div class="container">
+        <h2>Sample supervised sessions</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Intro to 3D Printing</h3>
+            <p>Ratio 1:8 · 2h · Examples: PLA only, safety briefing, print your first part.</p>
+          </div>
+          <div class="feature">
+            <h3>Microscopy Open Lab</h3>
+            <p>Ratio 1:6 · 2h · Prepared slides, device demos, cleaning logs.</p>
+          </div>
+          <div class="feature">
+            <h3>Electronics Soldering</h3>
+            <p>Ratio 1:6 · 2h · Toolbox intro, ventilation, build a basic kit.</p>
+          </div>
+        </div>
+        <p style="margin-top:16px; color: var(--ink-500);">These examples are for illustration. You set the final scope, ratios and pricing.</p>
+      </div>
+    </section>
+    <!-- Partner Application Form -->
+    <section id="partner-form" class="reveal">
+      <div class="container">
+        <h2>Apply to Partner</h2>
+        <p class="sub">Tell us about your lab or makerspace and we’ll be in touch with next steps.</p>
+        <form onsubmit="event.preventDefault(); alert('Thank you! We will review your application and reach out shortly.');" style="max-width:600px; margin-top:24px;">
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <input type="text" name="orgName" placeholder="Organization name" required style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+            <input type="text" name="contact" placeholder="Lab manager contact (name & email)" required style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+            <input type="text" name="address" placeholder="Address" required style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+            <input type="number" name="maxCapacity" placeholder="Max capacity" min="1" style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+            <input type="text" name="ratios" placeholder="Supervision ratios (e.g., 1:8)" style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+            <input type="text" name="ageRanges" placeholder="Allowed age ranges" style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+            <textarea name="equipment" placeholder="Equipment list" rows="3" style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);"></textarea>
+            <select name="economics" style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);">
+              <option value="" disabled selected>Preferred economics</option>
+              <option value="revenue">Revenue share</option>
+              <option value="fee">Facility fee</option>
+            </select>
+            <textarea name="insurance" placeholder="Insurance requirements" rows="2" style="padding:12px; border-radius:var(--radius); border:1px solid var(--line-200);"></textarea>
+            <button type="submit" class="btn primary" style="width:fit-content;">Submit application</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cols">
+        <div>
+          <h5>Learn</h5>
+          <ul>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="labs.html" class="active">Labs</a></li>
+            <li><a href="passport.html">Passport</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="code-of-conduct.html">Code of Conduct</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:24px;font-size:0.875rem;">© <span id="year-labs"></span> Research for Everyone — Standardized safety & supervised lab access.</p>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year-labs').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab Readiness Passport | Research for Everyone</title>
+  <meta name="description" content="Learn about the Lab Readiness Passport safety course: modules, assessment and consent requirements." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Lab Readiness Passport",
+    "description": "A 3–4 hour safety course covering general lab safety, BSL‑1 biosafety and basic fabrication tools. Pass the exam to earn a 12‑month badge.",
+    "provider": { "@type": "Organization", "name": "Research for Everyone", "sameAs": "https://researchforeveryone.org" }
+  }
+  </script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Research for Everyone logo" />
+        <span>Research for Everyone</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="students.html">Students</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="passport.html" class="active">Passport</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Theme toggle button -->
+    </div>
+  </header>
+  <main>
+    <!-- Hero -->
+    <section class="hero passport-hero">
+      <div class="container">
+        <h1><span id="hero-typed" data-phrases="Earn your Passport|Standardised training|Get certified"></span></h1>
+        <p>Standardised safety training and assessment to earn your badge for supervised access to real labs.</p>
+        <div class="cta-row">
+          <a href="#enroll" class="btn primary">Enroll now</a>
+        </div>
+      </div>
+    </section>
+    <!-- Modules, Assessment, Consent -->
+    <section class="reveal">
+      <div class="container">
+        <div class="features">
+          <div class="feature">
+            <h3>Modules</h3>
+            <p>General lab safety (PPE, signage, housekeeping, emergencies), BSL‑1 biosafety basics, basic electrical and mechanical safety for fabrication tools, code of conduct & harassment prevention, waste disposal and incident reporting.</p>
+          </div>
+          <div class="feature">
+            <h3>Assessment</h3>
+            <p>A mix of multiple‑choice questions and hands‑on demonstration. Badges are valid for 12 months and may be revoked for safety violations.</p>
+          </div>
+          <div class="feature">
+            <h3>Parental consent</h3>
+            <p>Participants under 18 require a guardian to sign the consent and waiver forms. A named chaperone must accompany the minor during sessions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Enrollment form -->
+    <section id="enroll" class="reveal">
+      <div class="container">
+        <h2>Enroll in Passport</h2>
+        <p class="sub">Sign up for the next safety class. We will confirm dates and logistics by email.</p>
+        <form onsubmit="event.preventDefault(); alert('Thank you for registering! We will send you class details soon.');" style="max-width:500px;margin-top:24px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <input type="text" name="fullName" placeholder="Your full name" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);">
+            <input type="email" name="email" placeholder="Your email" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);">
+            <input type="text" name="school" placeholder="School/University" style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);">
+            <input type="text" name="age" placeholder="Age" style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);">
+            <textarea name="notes" placeholder="Accessibility needs or questions" rows="3" style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);"></textarea>
+            <button type="submit" class="btn primary" style="width:fit-content;">Submit registration</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cols">
+        <div>
+          <h5>Learn</h5>
+          <ul>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="passport.html" class="active">Passport</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="code-of-conduct.html">Code of Conduct</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:24px;font-size:0.875rem;">© <span id="year-passport"></span> Research for Everyone — Standardized safety & supervised lab access.</p>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year-passport').textContent = new Date().getFullYear();</script>
+</body>
+</html>

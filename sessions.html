@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book Sessions | Research for Everyone</title>
+  <meta name="description" content="Browse and register for upcoming supervised lab sessions offered through Research for Everyone." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Research for Everyone logo" />
+        <span>Research for Everyone</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="students.html">Students</a></li>
+          <li><a href="labs.html">Labs</a></li>
+          <li><a href="passport.html">Passport</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Theme toggle button -->
+    </div>
+  </header>
+  <main>
+    <section class="hero sessions-hero">
+      <div class="container">
+        <h1><span id="hero-typed" data-phrases="Upcoming sessions|Hands‑on practice|Book your spot"></span></h1>
+        <p>Browse our proposed sessions below. These examples illustrate the kinds of experiences you can expect once pilots begin.</p>
+      </div>
+    </section>
+    <section class="reveal">
+      <div class="container">
+        <div class="features">
+          <div class="feature">
+            <h3>Intro to 3D Printing</h3>
+            <p>Date: TBA · Duration: 2h · Ratio: 1:8 · Price: £TBA</p>
+            <p>Overview: Learn FDM printing basics, practice safe setup and print your first simple part. Materials included.</p>
+            <a href="#" class="btn outline" style="margin-top:12px;">Register interest</a>
+          </div>
+          <div class="feature">
+            <h3>Microscopy Demo Day</h3>
+            <p>Date: TBA · Duration: 2h · Ratio: 1:6 · Price: £TBA</p>
+            <p>Overview: Observe prepared slides on compound microscopes, discuss imaging basics and learn cleaning procedures.</p>
+            <a href="#" class="btn outline" style="margin-top:12px;">Register interest</a>
+          </div>
+          <div class="feature">
+            <h3>Electronics Soldering Workshop</h3>
+            <p>Date: TBA · Duration: 2h · Ratio: 1:6 · Price: £TBA</p>
+            <p>Overview: Master safe soldering techniques and assemble a simple electronic kit under close supervision.</p>
+            <a href="#" class="btn outline" style="margin-top:12px;">Register interest</a>
+          </div>
+        </div>
+        <p style="margin-top:24px;color:var(--ink-500);">We will publish confirmed dates, locations and prices once host labs are finalized. Register your interest now and we will notify you when scheduling opens.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cols">
+        <div>
+          <h5>Learn</h5>
+          <ul>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="labs.html">Labs</a></li>
+            <li><a href="passport.html">Passport</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="code-of-conduct.html">Code of Conduct</a></li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:24px;font-size:0.875rem;">© <span id="year-sessions"></span> Research for Everyone — Standardized safety & supervised lab access.</p>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year-sessions').textContent = new Date().getFullYear();</script>
+</body>
+</html>

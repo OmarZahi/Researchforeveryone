@@ -1,0 +1,565 @@
+/* Import Inter font for a clean, modern look.  This line must precede any CSS rules that
+   reference the font family. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Root variables defining our palette and general sizing */
+:root {
+  --ink-900: #0B1220;
+  --ink-700: #2C3647;
+  --ink-500: #5B667A;
+  --bg-0: #FFFFFF;
+  --bg-50: #F7F9FC;
+  --line-200: #E6E9EF;
+
+  /* Primary (science blue) */
+  --p-700: #0747B6;
+  --p-600: #0B5FFF;
+  --p-100: #E6F0FF;
+
+  /* Secondary (clean teal) */
+  --s-600: #0FB5B5;
+  --s-300: #A8E6E0;
+
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(11, 18, 32, 0.08);
+  /* font-size scaling for responsive typography; adjust root rem in CSS if needed */
+}
+
+/* Removed dark mode overrides.  The application now operates solely in light mode to
+   simplify the experience and ensure consistent branding.  Any previous dark-mode
+   preferences stored in localStorage will be ignored since the JS toggling has been
+   removed. */
+
+/* Removed theme toggle styling: dark mode has been deprecated for a cleaner, single-mode design. */
+
+/* Partner slider styles.  This horizontal ticker showcases partner logos in a continuous loop. */
+.partners-section {
+  padding: 64px 0;
+}
+.partner-slider {
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius);
+  background: var(--bg-0);
+  margin-top: 32px;
+}
+.partner-slider .slide-track {
+  display: flex;
+  width: calc(200% + 40px);
+  animation: scroll 25s linear infinite;
+}
+.partner-slider .slide-track img {
+  height: 60px;
+  width: auto;
+  margin: 0 40px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+.partner-slider .slide-track img:hover {
+  opacity: 1;
+  filter: none;
+}
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Page-specific hero backgrounds.  Additional classes can override the default network hero.
+   For example, the about page uses a handshake graphic for its hero. */
+.hero.about-hero {
+  background-image: linear-gradient(to right, rgba(255,255,255,0.88), rgba(255,255,255,0.60)), url('../img/heroes/about_hero.png');
+  background-size: cover;
+  background-position: center;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  /* Prefer Inter.  Fall back to system fonts if the external resource fails to load. */
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg-50);
+  color: var(--ink-700);
+  line-height: 1.6;
+  /* Prevent horizontal scrolling caused by wide animated elements such as the partner slider */
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--p-600);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Header and navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line-200);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  position: relative;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand img {
+  width: 36px;
+  height: 36px;
+}
+.brand span {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--ink-900);
+}
+
+/* Hide mobile nav toggle by default; visible only on small screens */
+.nav-toggle {
+  display: none;
+}
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 24px;
+}
+.nav a {
+  position: relative;
+  padding-bottom: 4px;
+  color: var(--ink-700);
+  font-weight: 500;
+}
+.nav a:hover,
+.nav a.active {
+  color: var(--ink-900);
+}
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--p-600);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .2s ease;
+}
+.nav a:hover::after,
+.nav a.active::after {
+  transform: scaleX(1);
+}
+
+/* Hero section */
+/*
+  The hero uses a layered background: the base image conveys a futuristic network theme,
+  while a soft linear gradient overlay keeps text readable.  Positioning is relative so
+  pseudo elements and absolutely positioned children (like the typewriter cursor) can
+  sit inside the container.  We increase the padding for breathing room on larger screens.
+*/
+/*
+  Hero layout
+  ------------
+  The hero spans the full viewport height to ensure a focused, immersive first impression.  By using
+  flexbox, the heading and supporting text remain centered both vertically and horizontally on
+  large and small screens.  Padding provides breathing room above and below the content, but
+  minimum height ensures the section fills the screen even on devices with small viewports.
+
+  A gentle zoom animation runs on the background image to add depth without distracting
+  from the text.  Two pseudo‑elements layer softly tinted radial gradients over the image and
+  animate diagonally, creating an elegant, moving backdrop reminiscent of modern hero designs.
+*/
+/*
+  The hero no longer forces the viewport height.  Instead it uses generous top and bottom
+  padding so the user can focus on the headline without the content feeling cramped or
+  overflowing on small devices.  We removed the flex centring to simplify vertical
+  alignment and reduce scrolling artifacts.  The gradient overlay is slightly
+  denser to improve contrast between the headline and the network image.
+*/
+.hero {
+  position: relative;
+  padding: 160px 0;
+  text-align: center;
+  background-image: linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.8)), url('../img/hero.png');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  animation: hero-zoom 25s ease-in-out infinite alternate;
+}
+
+/* Dynamic shapes in the hero */
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -25%;
+  left: -25%;
+  width: 150%;
+  height: 150%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* The first floating layer uses blue and teal circles that drift diagonally */
+.hero::before {
+  background: radial-gradient(circle at 20% 30%, rgba(14, 95, 255, 0.15) 0%, rgba(14, 95, 255, 0) 60%),
+              radial-gradient(circle at 80% 70%, rgba(15, 181, 181, 0.15) 0%, rgba(15, 181, 181, 0) 60%);
+  animation: hero-move-1 40s linear infinite;
+}
+
+/* The second layer uses softer pinks and light blues for contrast */
+.hero::after {
+  background: radial-gradient(circle at 75% 25%, rgba(255, 230, 250, 0.10) 0%, rgba(255, 230, 250, 0) 60%),
+              radial-gradient(circle at 25% 80%, rgba(230, 245, 255, 0.10) 0%, rgba(230, 245, 255, 0) 60%);
+  animation: hero-move-2 60s linear infinite;
+}
+
+@keyframes hero-move-1 {
+  from { transform: translate(0%, 0%); }
+  to   { transform: translate(-30%, -20%); }
+}
+
+@keyframes hero-move-2 {
+  from { transform: translate(0%, 0%); }
+  to   { transform: translate(-20%, -30%); }
+}
+
+/* Keyframe animation for the hero zoom.  The scale factor is slight to avoid
+   distracting the user while still adding depth to the page. */
+@keyframes hero-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.05); }
+}
+
+/* Shared network background for other pages.  These classes reuse the same
+   gradient overlay and network image as the base .hero rule.  Assign one
+   of these classes to a hero section in your HTML to give that page
+   a consistent look while still allowing per-page modifications. */
+.hero.students-hero,
+.hero.labs-hero,
+.hero.passport-hero,
+.hero.safety-hero,
+.hero.faq-hero,
+.hero.contact-hero,
+.hero.sessions-hero,
+.hero.privacy-hero,
+.hero.terms-hero,
+.hero.code-hero {
+  background-image: linear-gradient(to right, rgba(255,255,255,0.88), rgba(255,255,255,0.60)), url('../img/hero.png');
+}
+.hero h1 {
+  margin: 0;
+  font-size: 3rem;
+  color: var(--ink-900);
+  line-height: 1.2;
+}
+.hero p {
+  margin-top: 16px;
+  font-size: 1.25rem;
+  max-width: 700px;
+  color: var(--ink-500);
+}
+
+/* The typewriter caret animates via JS by toggling a class on and off */
+#hero-typed {
+  border-right: 2px solid var(--p-700);
+  padding-right: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.cta-row {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+  border: 2px solid transparent;
+}
+.btn.primary {
+  background-color: var(--p-600);
+  color: #ffffff;
+}
+.btn.primary:hover {
+  background-color: var(--p-700);
+}
+.btn.outline {
+  background-color: transparent;
+  color: var(--p-600);
+  border-color: var(--p-600);
+}
+.btn.outline:hover {
+  background-color: var(--p-100);
+}
+
+/* Generic section styling */
+section {
+  padding: 64px 0;
+}
+section h2 {
+  margin: 0 0 16px 0;
+  font-size: 2rem;
+  color: var(--ink-900);
+}
+section p.sub {
+  font-size: 1.125rem;
+  color: var(--ink-500);
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+/* Scroll reveal utility classes */
+/*
+  Elements marked with the `reveal` class start off hidden and slightly translated down.
+  When they intersect the viewport they gain the `visible` class via JS which animates
+  them into place.  The transition is defined on the visible state so elements fade
+  and slide smoothly into view.
+*/
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Metrics counter section */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 32px;
+  margin-top: 32px;
+}
+.metric {
+  text-align: center;
+  flex: 1 1 200px;
+}
+.metric .count {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--p-600);
+}
+.metric p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: var(--ink-500);
+}
+
+/* Product section layout */
+.product {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+.product img {
+  max-width: 480px;
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.product .product-content {
+  flex: 1 1 300px;
+}
+.product .product-content h3 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--ink-900);
+}
+.product .product-content p {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  color: var(--ink-500);
+}
+.product .product-content .btn-row {
+  margin-top: 24px;
+  display: flex;
+  gap: 16px;
+}
+
+/* Features grid */
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.feature {
+  flex: 1 1 260px;
+  background-color: var(--bg-0);
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.feature h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  color: var(--ink-900);
+}
+.feature p {
+  margin: 0;
+  color: var(--ink-500);
+}
+
+/* FAQ list */
+.faq {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  margin-bottom: 16px;
+}
+.faq-item h4 {
+  margin: 0;
+  font-size: 1.125rem;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+.faq-item p {
+  margin-top: 8px;
+  color: var(--ink-500);
+}
+
+/* Footer */
+.site-footer {
+  background-color: var(--bg-0);
+  border-top: 1px solid var(--line-200);
+  padding: 32px 0;
+  color: var(--ink-500);
+}
+.site-footer .footer-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.site-footer h5 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: var(--ink-900);
+}
+.site-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-footer a {
+  color: var(--ink-500);
+  font-size: 0.95rem;
+}
+.site-footer a:hover {
+  color: var(--ink-900);
+}
+
+/* Team grid styles.  Use on pages that introduce people involved with the project.
+   Each team member occupies a fixed width, centers their photo and text, and
+   stacks gracefully on smaller screens. */
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  margin-top: 32px;
+}
+.team-member {
+  text-align: center;
+  width: 200px;
+}
+.team-member img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+.team-member h4 {
+  margin: 8px 0 4px;
+  color: var(--ink-900);
+  font-size: 1.1rem;
+}
+.team-member p {
+  margin: 0;
+  color: var(--ink-500);
+  font-size: 0.9rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .nav ul {
+    display: none;
+    position: absolute;
+    right: 16px;
+    top: 64px;
+    background: var(--bg-0);
+    border: 1px solid var(--line-200);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav.open ul {
+    display: flex;
+  }
+  /* Show mobile menu toggle and style it */
+  .nav-toggle {
+    display: inline-flex;
+    background: var(--p-600);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  /* Make buttons stack on small screens */
+  .cta-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero h1 {
+    font-size: 2.0rem;
+  }
+
+  /* Reduce vertical padding on the hero on small screens to save space */
+  .hero {
+    min-height: 100vh;
+    padding: 0 12px;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
