@@ -7,6 +7,7 @@ import MotionWrapper from '../components/animations/MotionWrapper.astro';
 import FeatureGrid from '../components/FeatureGrid.astro';
 import Counter from '../components/Counter.astro';
 import ContactForm from '../components/ContactForm.astro';
+import TeamGrid from '../components/TeamGrid.astro';
 
 // Define content data for components
 const howItWorksFeatures = [
@@ -52,6 +53,14 @@ const testimonialFeatures = [
   { title: '', description: '"As a lab manager, partnering with Research for Everyone has been straightforward and rewarding. Their students arrive prepared and respectful of our space." — A. Elsayed, Fab Lab Director' },
   { title: '', description: '"The Passport program gave our students the confidence to handle equipment safely. It\'s exactly what schools have been missing." — H. Fawzy, High School Teacher' },
   { title: '', description: '"I never imagined I could work in a real lab before college. Now I\'ve completed three sessions and feel ready for internships." — M. Ahmed, Student' }
+];
+
+// Placeholder team members
+const team = [
+  { name: 'Alex Johnson', role: 'Founder & Director', imgSrc: '/img/team-placeholder.png', bio: 'Leads partnerships and program design.' },
+  { name: 'Samira Lee', role: 'Operations Lead', imgSrc: '/img/team-placeholder.png', bio: 'Coordinates sessions and compliance.' },
+  { name: 'Diego Martín', role: 'Safety Trainer', imgSrc: '/img/team-placeholder.png', bio: 'Delivers Passport training.' },
+  { name: 'Priya Shah', role: 'Community Manager', imgSrc: '/img/team-placeholder.png', bio: 'Supports students and mentors.' }
 ];
 ---
 <BaseLayout title="Research for Everyone | Safe, supervised lab access" description="Standardized safety training and operator-led lab sessions for students and early researchers.">
@@ -180,6 +189,17 @@ const testimonialFeatures = [
       <div class="container">
         <h2>Voices from the community</h2>
     <FeatureGrid features={testimonialFeatures} />
+      </div>
+    </section>
+  </MotionWrapper>
+
+  <!-- Team Section -->
+  <MotionWrapper animation="fade-up" threshold={0.2}>
+    <section id="team">
+      <div class="container">
+        <h2>Team</h2>
+        <p class="sub">The people behind Research for Everyone (placeholders).</p>
+        <TeamGrid members={team} />
       </div>
     </section>
   </MotionWrapper>
