@@ -27,6 +27,32 @@ import Hero from '../components/Hero.astro';
             <div class="form-status" aria-live="polite" style="font-size:0.95rem;color:var(--ink-500);"></div>
           </div>
         </form>
+        <script is:inline>
+        // Prevent redirect; submit via fetch and show inline status
+        (function(init){
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+          else init();
+        })(() => {
+          const form = document.querySelector('#partner-form form.ajax-form');
+          if (!form) return;
+          const status = form.querySelector('.form-status');
+          const endpoint = form.getAttribute('data-form-endpoint') || '';
+          const honeypot = form.querySelector('input[name="company"]');
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (honeypot && honeypot.value) { if (status) status.textContent = 'Thanks!'; form.reset(); return; }
+            if (!endpoint) { if (status) status.textContent = 'Thanks! Your message was captured locally.'; form.reset(); return; }
+            const formData = new FormData(form);
+            if (status) { status.style.color = 'var(--ink-500)'; status.textContent = 'Sending…'; }
+            fetch(endpoint, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+            .then((res) => {
+              if (res.ok) { if (status) { status.style.color = 'var(--p-600)'; status.textContent = 'Thank you! We\'ll be in touch.'; } form.reset(); }
+              else { return res.json().catch(() => ({})).then((data) => { throw new Error(data.error || 'Submission failed.'); }); }
+            })
+            .catch((err) => { if (status) { status.style.color = '#b00020'; status.textContent = 'Oops, something went wrong. Please email Omar.2123039@stemobour.moe.edu.eg'; } console.error(err); });
+          });
+  });
+        </script>
       </div>
     </section>
   </main>

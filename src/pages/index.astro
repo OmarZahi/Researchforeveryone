@@ -55,7 +55,7 @@ const testimonialFeatures = [
 ];
 
 ---
-<BaseLayout title="Research for Everyone | Safe, supervised lab access" description="Standardized safety training and operator-led lab sessions for students and early researchers.">
+<BaseLayout title="Research for Everyone" description="Standardized safety training and operator-led lab sessions for students and early researchers.">
   <a href="#home" class="skip-link">Skip to content</a>
   <Header active="home" />
 
@@ -199,7 +199,8 @@ const testimonialFeatures = [
         <div class="container">
           <h2>Register interest</h2>
           <p class="sub">Tell us what you’re looking for and we’ll follow up with dates and availability.</p>
-          <form action="https://formspree.io/f/mzzvqeyk" method="POST" class="register-form" style="max-width:680px;">
+          <!-- Use AJAX to avoid redirecting to Formspree's thank-you page -->
+          <form id="register-form" class="register-form ajax-form" data-form-endpoint="https://formspree.io/f/mzzvqeyk" style="max-width:680px;">
             <div class="grid">
               <label>
                 <span>Full name</span>
@@ -242,7 +243,42 @@ const testimonialFeatures = [
             </div>
             <button type="submit" class="btn primary" style="margin-top:16px;">Submit</button>
             <p class="fineprint">Typical ratios: 1:8 for fabrication tools, 1:4 for wet benches. Activities remain within low‑risk scope and host SOPs.</p>
+            <div class="form-status" aria-live="polite"></div>
           </form>
+          <script is:inline>
+          // Inline handler to prevent off-site redirect and show inline status
+          (function(init){
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+            else init();
+          })(() => {
+            const form = document.getElementById('register-form');
+            if (!form) return;
+            const status = form.querySelector('.form-status');
+            const endpoint = form.getAttribute('data-form-endpoint') || '';
+            const honeypot = form.querySelector('input[name="company"]');
+            
+            form.addEventListener('submit', (e) => {
+              e.preventDefault();
+              if (honeypot && honeypot.value) { if (status) status.textContent = 'Thanks!'; form.reset(); return; }
+              if (!endpoint) { if (status) status.textContent = 'Thanks! Your message was captured locally.'; form.reset(); return; }
+              const formData = new FormData(form);
+              if (status) { status.style.color = 'var(--ink-500)'; status.textContent = 'Sending…'; }
+              fetch(endpoint, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+              .then((res) => {
+                if (res.ok) {
+                  if (status) { status.style.color = 'var(--p-600)'; status.textContent = 'Thank you! We\'ll be in touch.'; }
+                  form.reset();
+                } else {
+                  return res.json().catch(() => ({})).then((data) => { throw new Error(data.error || 'Submission failed.'); });
+                }
+              })
+              .catch((err) => {
+                if (status) { status.style.color = '#b00020'; status.textContent = 'Oops, something went wrong. Please email Omar.2123039@stemobour.moe.edu.eg'; }
+                console.error(err);
+              });
+            });
+          });
+          </script>
         </div>
       </section>
     </MotionWrapper>
@@ -314,7 +350,7 @@ const testimonialFeatures = [
         <div class="container">
           <h2>Get in touch</h2>
           <p class="sub">Interested in partnering, mentoring or joining a pilot? We’d love to hear from you.</p>
-          <p>Email us at <a href="mailto:hello@researchforeveryone.org">hello@researchforeveryone.org</a> or fill out our simple interest form below.</p>
+          <p>Email us at <a href="mailto:Omar.2123039@stemobour.moe.edu.eg">Omar.2123039@stemobour.moe.edu.eg</a> or fill out our simple interest form below.</p>
           <ContactForm compact={true} />
         </div>
       </section>
@@ -367,6 +403,7 @@ section p.sub { font-size: 1.125rem; color: var(--ink-500); margin-bottom: 32px;
 .register-form label.full { grid-column: 1 / -1; }
 .register-form input, .register-form select, .register-form textarea { padding: 12px; border-radius: var(--radius); border: 1px solid var(--line-200); background: var(--bg-0); }
 .fineprint { margin-top: 8px; color: var(--ink-500); font-size: 0.95rem; }
+.register-form .form-status { margin-top: 10px; font-size: 0.95rem; color: var(--ink-500); }
 
 @media (max-width: 900px) { .offerings { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .register-form .grid { grid-template-columns: 1fr; } }

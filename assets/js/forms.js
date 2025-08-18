@@ -51,7 +51,7 @@ export function initializeForms() {
       .catch(function(err) {
         if (status) {
           status.style.color = '#b00020';
-          status.textContent = 'Oops, something went wrong. Please email hello@researchforeveryone.org';
+          status.textContent = 'Oops, something went wrong. Please email Omar.2123039@stemobour.moe.edu.eg';
         }
         console.error(err);
       });
