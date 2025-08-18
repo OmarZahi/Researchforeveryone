@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+<BaseLayout title="FAQ | Research for Everyone" description="Frequently asked questions about participation, safety, activities and policies.">
+  <Header active="faq" />
+  <main>
+    <section class="hero faq-hero">
+      <div class="container">
+        <h1>Frequently asked questions</h1>
+        <p>If something’s missing here, contact us and we’ll help.</p>
+      </div>
+    </section>
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+      <section>
+        <div class="container">
+        <div class="faq">
+          <div class="faq-item">
+            <h4>Who can participate?</h4>
+            <p>High school students, undergraduates and recent graduates are eligible. Participants under 18 require guardian consent and a chaperone.</p>
+          </div>
+          <div class="faq-item">
+            <h4>What activities are allowed?</h4>
+            <p>Only low‑risk Biosafety Level‑1 biology and basic digital fabrication under supervision. No pathogens or hazardous chemistry.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Do minors need consent?</h4>
+            <p>Yes. A parent or legal guardian must sign a consent and waiver form before the minor can enroll or attend sessions.</p>
+          </div>
+          <div class="faq-item">
+            <h4>How long is the training?</h4>
+            <p>The Passport course takes 3–4 hours including the exam. Supervised lab sessions typically run between 1 and 3 hours.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Is there insurance?</h4>
+            <p>Sessions operate under the host lab’s liability policy and any additional event insurance agreed to in the memorandum of understanding.</p>
+          </div>
+        </div>
+      </section>
+    </MotionWrapper>
+    <script type="application/ld+json">{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"Who can participate?","acceptedAnswer":{"@type":"Answer","text":"High school students, undergraduates and recent graduates. Minors need guardian consent."}},
+        {"@type":"Question","name":"What activities are allowed?","acceptedAnswer":{"@type":"Answer","text":"Only low‑risk Biosafety Level‑1 biology and basic digital fabrication under supervision."}},
+        {"@type":"Question","name":"Do minors need consent?","acceptedAnswer":{"@type":"Answer","text":"Yes. Participants under 18 must provide guardian consent and attend with a chaperone."}},
+        {"@type":"Question","name":"How long is the training?","acceptedAnswer":{"@type":"Answer","text":"The Passport course takes 3–4 hours; supervised sessions last 1–3 hours."}},
+        {"@type":"Question","name":"Is there insurance?","acceptedAnswer":{"@type":"Answer","text":"Sessions operate under host lab policies and/or event liability as specified in the MOU."}}
+      ]
+    }</script>
+  </main>
+  <Footer />
+</BaseLayout>
+<script>
+  // Inline FAQ toggling for this page
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach((item) => {
+      const question = item.querySelector('h4');
+      const answer = item.querySelector('p') as HTMLElement | null;
+      if (!question || !answer) return;
+      answer.style.display = 'none';
+      (question as HTMLElement).style.cursor = 'pointer';
+      question.setAttribute('tabindex', '0');
+      question.setAttribute('role', 'button');
+      question.setAttribute('aria-expanded', 'false');
+      const toggle = () => {
+        const isOpen = answer.style.display === 'block';
+        answer.style.display = isOpen ? 'none' : 'block';
+        question.setAttribute('aria-expanded', (!isOpen).toString());
+      };
+      question.addEventListener('click', toggle);
+      question.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  });
+</script>
+<style>
+/* Basic FAQ styles scoped to page */
+.faq { max-width: 800px; margin: 0 auto; }
+.faq-item { margin-bottom: 16px; }
+.faq-item h4 { margin: 0; font-size: 1.125rem; color: var(--ink-900); cursor: pointer; }
+.faq-item p { margin-top: 8px; color: var(--ink-500); }
+</style>

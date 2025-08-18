@@ -1,0 +1,50 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-cols">
+      <div>
+        <h5>Learn</h5>
+        <ul>
+          <li><a href="/students">Students</a></li>
+          <li><a href="/labs">Labs</a></li>
+          <li><a href="/passport">Passport</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/terms">Terms</a></li>
+          <li><a href="/code-of-conduct">Code of Conduct</a></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:24px;font-size:0.875rem;">© <span id="year"></span> Research for Everyone — Standardized safety & supervised lab access.</p>
+  </div>
+</footer>
+<script>
+  const yearElem = document.getElementById('year');
+  if (yearElem) {
+    yearElem.textContent = String(new Date().getFullYear());
+  }
+</script>
+<style>
+.site-footer {
+  background-color: var(--bg-0);
+  border-top: 1px solid var(--line-200);
+  padding: 32px 0;
+  color: var(--ink-500);
+}
+.site-footer .footer-cols { display: flex; flex-wrap: wrap; gap: 24px; }
+.site-footer h5 { margin: 0 0 8px; font-size: 1rem; color: var(--ink-900); }
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer a { color: var(--ink-500); font-size: 0.95rem; }
+.site-footer a:hover { color: var(--ink-900); }
+</style>

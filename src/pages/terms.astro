@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="Terms of Use | Research for Everyone" description="Terms of use for Research for Everyone.">
+  <Header active="terms" />
+  <main>
+    <section class="hero terms-hero">
+      <div class="container">
+        <h1>Terms of Use</h1>
+        <p>Please read these terms carefully before using our services.</p>
+      </div>
+    </section>
+    <section class="reveal">
+      <div class="container">
+        <p>This website and associated programs are provided for educational purposes. We strive to ensure accuracy, but we make no warranties regarding the completeness or reliability of the information. Participation in lab sessions is subject to safety rules and supervision policies which must be followed at all times. We reserve the right to refuse or revoke access to any individual who fails to comply. By using this site or enrolling in our programs, you agree to these terms. These terms may change, and continued use of the site constitutes acceptance of the revised terms.</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

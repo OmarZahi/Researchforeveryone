@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="Students | Research for Everyone" description="How to earn the Passport, what to expect, and outcomes for students.">
+  <Header active="students" />
+  <main>
+    <section class="hero students-hero">
+      <div class="container">
+        <h1>Learn safely, build your skills.</h1>
+        <p>Complete the safety course to earn your Lab Readiness Passport. Then book insured, supervised sessions at partner labs.</p>
+        <div class="cta-row">
+          <a href="/passport" class="btn primary">Get the Passport</a>
+          <a href="/sessions" class="btn outline">Find a Session</a>
+        </div>
+      </div>
+    </section>
+    <section class="reveal">
+      <div class="container">
+        <h2>Why this matters</h2>
+        <div class="features">
+          <div class="feature"><h3>Build your portfolio</h3><p>Document your work to showcase to mentors and employers.</p></div>
+          <div class="feature"><h3>Demonstrate readiness</h3><p>Show you understand safety protocols and are prepared.</p></div>
+          <div class="feature"><h3>Unlock opportunities</h3><p>Create pathways to internships and research.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

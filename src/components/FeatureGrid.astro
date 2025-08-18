@@ -1,0 +1,64 @@
+---
+import MotionWrapper from './animations/MotionWrapper.astro';
+
+// Feature Grid component with stagger animations
+export interface Feature {
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  features: Feature[];
+  columns?: number;
+}
+
+const { features, columns = 3 } = Astro.props;
+const gridClass = `features features-${columns}`;
+---
+
+<MotionWrapper animation="stagger" class={gridClass}>
+  {features.map((feature) => (
+    <div class="feature">
+      <h3>{feature.title}</h3>
+      <p>{feature.description}</p>
+    </div>
+  ))}
+</MotionWrapper>
+
+<style>
+.feature {
+  background-color: var(--bg-0);
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.feature h3 { margin: 0 0 8px; font-size: 1.25rem; color: var(--ink-900); }
+.feature p { margin: 0; color: var(--ink-500); }
+
+.features-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.features-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.features-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .features-2,
+  .features-3,
+  .features-4 {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

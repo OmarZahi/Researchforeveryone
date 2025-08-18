@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Counter from '../components/Counter.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+// Define content data for components
+const howItWorksFeatures = [
+  { title: 'Train', description: 'Complete a 3–4 hour safety course and pass the exam.' },
+  { title: 'Badge', description: 'Receive a 12‑month Lab Readiness Passport as proof of readiness.' },
+  { title: 'Book', description: 'Join supervised, pre‑approved sessions at partner labs.' }
+];
+
+const programFeatures = [
+  { title: 'Passport training', description: '3–4 hour standardized safety class plus exam.' },
+  { title: 'Operator sessions', description: 'Fixed ratios and pre‑approved activities at partner labs.' },
+  { title: 'Portfolio builder', description: 'Attendance records and project snapshots to showcase your work.' },
+  { title: 'Mentorship', description: 'Optional 1:1 or group office hours with experts.' },
+  { title: 'School packs', description: 'Discount bundles for classrooms and cohorts.' },
+  { title: 'Outreach days', description: 'Low‑risk demos and open lab tours for the community.' }
+];
+
+const audienceFeatures = [
+  { title: 'High school students', description: 'With guardian consent; learn hands‑on safely.' },
+  { title: 'Undergraduates', description: 'Supplement your coursework with real lab experience.' },
+  { title: 'Recent graduates', description: 'Build your portfolio and bridge to industry or research.' }
+];
+
+const safetyFeatures = [
+  { title: 'No BSL‑2+ or pathogens', description: 'Only basic biosafety level‑1 work is permitted.' },
+  { title: 'No hazardous chemistry', description: 'No volatile, reactive or pressurized systems.' },
+  { title: 'No unsupervised access', description: 'All sessions include named operators and fixed ratios.' }
+];
+
+const partnerFeatures = [
+  { title: 'Risk controls', description: 'BSL‑1 & basic fab only; strict supervision ratios; your rules first.' },
+  { title: 'Insurance & paperwork', description: 'Waivers, certificates and visitor badges simplified.' },
+  { title: 'Economics', description: 'Choose revenue share on sessions or fixed facility fees with consumables at cost.' }
+];
+
+const passportFeatures = [
+  { title: 'Modules', description: 'General lab safety, BSL‑1 biosafety, basic electrical/mechanical safety, code of conduct, waste disposal.' },
+  { title: 'Assessment', description: 'Mix of quiz and hands‑on demonstration; badges are valid for 12 months.' },
+  { title: 'Parental consent', description: 'Under‑18 participants require guardian signatures and a chaperone.' }
+];
+
+const testimonialFeatures = [
+  { title: '', description: '"As a lab manager, partnering with Research for Everyone has been straightforward and rewarding. Their students arrive prepared and respectful of our space." — A. Elsayed, Fab Lab Director' },
+  { title: '', description: '"The Passport program gave our students the confidence to handle equipment safely. It\'s exactly what schools have been missing." — H. Fawzy, High School Teacher' },
+  { title: '', description: '"I never imagined I could work in a real lab before college. Now I\'ve completed three sessions and feel ready for internships." — M. Ahmed, Student' }
+];
+---
+<BaseLayout title="Research for Everyone | Safe, supervised lab access" description="Standardized safety training and operator-led lab sessions for students and early researchers.">
+  <a href="#home" class="skip-link">Skip to content</a>
+  <Header active="home" />
+
+  <main>
+    <!-- Hero Section with Motion One animations -->
+    <Hero 
+      title="Safe, supervised lab access."
+      subtitle="Standardized safety training and operator‑led sessions for students and early researchers."
+  primaryCta={{ text: "Get the Passport", href: "/passport" }}
+  secondaryCta={{ text: "Partner your Lab", href: "/labs" }}
+    />
+
+    <!-- How it works -->
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+      <section id="how">
+        <div class="container">
+          <h2>How it works</h2>
+          <p class="sub">We make safe lab access simple: learn safety, earn a badge, and book supervised sessions.</p>
+          <FeatureGrid features={howItWorksFeatures} />
+        </div>
+      </section>
+    </MotionWrapper>
+
+    <!-- Metrics Section -->
+    <MotionWrapper animation="fade-up" threshold={0.3}>
+      <section id="metrics">
+        <div class="container">
+          <h2>Our impact</h2>
+          <p class="sub">Small steps with measurable progress.</p>
+          <div class="metrics">
+            <Counter target={12} label="Partner labs" />
+            <Counter target={200} label="Students trained" />
+            <Counter target={45} label="Supervised sessions" />
+          </div>
+        </div>
+      </section>
+    </MotionWrapper>
+    
+
+    <!-- Programs -->
+    <MotionWrapper animation="stagger" threshold={0.2}>
+      <section id="programs">
+        <div class="container">
+          <h2>Programs</h2>
+          <FeatureGrid features={programFeatures} columns={2} />
+        </div>
+      </section>
+    </MotionWrapper>
+
+    <!-- Product Section -->
+    <MotionWrapper animation="fade-up" threshold={0.3}>
+      <section id="product">
+        <div class="container">
+          <div class="product">
+            <img src="/img/product.png" alt="Illustration of lab equipment" loading="lazy" decoding="async" />
+            <div class="product-content">
+              <h3>Our product</h3>
+            <p>The Lab Readiness Passport and our supervised sessions combine rigorous training with safe, hands‑on practice. Earn your badge and then step into real labs under expert supervision.</p>
+            <p>We handle the logistics—insurance, waivers, scheduling and compliance—so labs can say “yes” without extra work and students can focus on learning.</p>
+            <div class="btn-row">
+              <a href="/passport" class="btn primary">Get the Passport</a>
+              <a href="/labs" class="btn outline">Partner your Lab</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+    </MotionWrapper>
+
+    <!-- Audience -->
+    <MotionWrapper animation="slide-left" threshold={0.3}>
+      <section id="students">
+        <div class="container">
+          <h2>Who it's for</h2>
+          <p class="sub">We welcome everyone eager to learn.</p>
+          <FeatureGrid features={audienceFeatures} />
+        </div>
+      </section>
+    </MotionWrapper>
+
+    <!-- Restrictions -->
+  <MotionWrapper animation="fade-up" threshold={0.2}>
+  <section id="safety">
+      <div class="container">
+        <h2>What we don’t do</h2>
+        <p class="sub">To keep you and our partners safe, we limit scope:</p>
+    <FeatureGrid features={safetyFeatures} />
+      </div>
+    </section>
+  </MotionWrapper>
+
+    <!-- Labs & Partners -->
+  <MotionWrapper animation="fade-up" threshold={0.2}>
+  <section id="labs">
+      <div class="container">
+        <h2>Partner with us</h2>
+        <p class="sub">Off‑peak revenue on idle capacity, pre‑trained visitors, and admin handled.</p>
+    <FeatureGrid features={partnerFeatures} />
+        <div class="cta-row" style="margin-top:32px;">
+          <a href="/contact" class="btn primary">Apply to partner</a>
+        </div>
+      </div>
+    </section>
+  </MotionWrapper>
+
+    <!-- Passport Section -->
+  <MotionWrapper animation="fade-up" threshold={0.2}>
+  <section id="passport">
+      <div class="container">
+        <h2>Lab Readiness Passport</h2>
+        <p class="sub">A concise safety curriculum plus exam to earn your readiness badge.</p>
+    <FeatureGrid features={passportFeatures} />
+        <div class="cta-row" style="margin-top:32px;">
+          <a href="/contact" class="btn primary">Enroll now</a>
+        </div>
+      </div>
+    </section>
+  </MotionWrapper>
+
+    <!-- Testimonials Section -->
+  <MotionWrapper animation="fade-up" threshold={0.2}>
+  <section id="testimonials">
+      <div class="container">
+        <h2>Voices from the community</h2>
+    <FeatureGrid features={testimonialFeatures} />
+      </div>
+    </section>
+  </MotionWrapper>
+
+    <!-- Partners Section -->
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+    <section id="partners" class="partners-section">
+      <div class="container">
+        <h2>Our partners</h2>
+        <p class="sub">Organisations that support hands‑on research access.</p>
+        <div class="partner-slider">
+          <div class="slide-track">
+      <img src="/img/partners/partner1.png" alt="Partner 1" loading="lazy" decoding="async" />
+      <img src="/img/partners/partner2.png" alt="Partner 2" loading="lazy" decoding="async" />
+      <img src="/img/partners/partner3.png" alt="Partner 3" loading="lazy" decoding="async" />
+            <!-- duplicate for seamless looping -->
+      <img src="/img/partners/partner1.png" alt="Partner 1" loading="lazy" decoding="async" />
+      <img src="/img/partners/partner2.png" alt="Partner 2" loading="lazy" decoding="async" />
+      <img src="/img/partners/partner3.png" alt="Partner 3" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </section>
+    </MotionWrapper>
+
+    <!-- FAQ Section removed from home page to avoid repetition; visit faq.html for full answers -->
+
+    <!-- Contact Section -->
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+      <section id="contact">
+        <div class="container">
+          <h2>Get in touch</h2>
+          <p class="sub">Interested in partnering, mentoring or joining a pilot? We’d love to hear from you.</p>
+          <p>Email us at <a href="mailto:hello@researchforeveryone.org">hello@researchforeveryone.org</a> or fill out our simple interest form below.</p>
+          <ContactForm compact={true} />
+        </div>
+      </section>
+    </MotionWrapper>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+/* Sections + utilities local to this page */
+section { padding: 64px 0; scroll-margin-top: 84px; }
+section h2 { margin: 0 0 16px 0; font-size: 2rem; color: var(--ink-900); }
+section p.sub { font-size: 1.125rem; color: var(--ink-500); margin-bottom: 32px; max-width: 640px; }
+
+.metrics { display: flex; flex-wrap: wrap; justify-content: space-around; gap: 32px; margin-top: 32px; }
+.metric { text-align: center; flex: 1 1 200px; }
+.metric .count { font-size: 3rem; font-weight: 700; color: var(--p-600); }
+.metric p { margin-top: 8px; font-size: 1rem; color: var(--ink-500); }
+
+.product { display: flex; align-items: center; gap: 48px; flex-wrap: wrap; }
+.product img { max-width: 480px; width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
+.product .product-content { flex: 1 1 300px; }
+.product .product-content h3 { margin-top: 0; font-size: 2rem; color: var(--ink-900); }
+.product .product-content p { margin-top: 12px; font-size: 1.1rem; color: var(--ink-500); }
+.product .product-content .btn-row { margin-top: 24px; display: flex; gap: 16px; }
+
+.partners-section { padding: 64px 0; }
+.partner-slider { overflow: hidden; width: 100%; border: 1px solid var(--line-200); border-radius: var(--radius); background: var(--bg-0); margin-top: 32px; }
+.partner-slider .slide-track { display: flex; width: calc(200% + 40px); animation: scroll 25s linear infinite; }
+.partner-slider .slide-track img { height: 60px; width: auto; margin: 0 40px; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: opacity 0.3s ease; }
+.partner-slider .slide-track img:hover { opacity: 1; filter: none; }
+.partner-slider:hover .slide-track { animation-play-state: paused; }
+@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 768px) { .product { gap: 24px; } }
+@media (prefers-reduced-motion: reduce) { .partner-slider .slide-track { animation: none !important; } }
+</style>

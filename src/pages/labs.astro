@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="Labs & Universities | Research for Everyone" description="Partner with us: risk controls, insurance, economics and how to apply.">
+  <Header active="labs" />
+  <main>
+    <section class="hero labs-hero">
+      <div class="container">
+        <h1>Partner with us</h1>
+        <p>Off‑peak revenue on idle capacity. Pre‑trained visitors. Supervision and admin handled.</p>
+        <div class="cta-row"><a href="#partner-form" class="btn primary">Apply to Partner</a></div>
+      </div>
+    </section>
+    <section id="partner-form" class="reveal">
+      <div class="container">
+        <h2>Apply to Partner</h2>
+        <p class="sub">Tell us about your lab; we’ll be in touch.</p>
+    <form class="ajax-form" data-form-endpoint="https://formspree.io/f/mzzvqeyk" style="max-width:600px;margin-top:24px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <input type="text" name="orgName" placeholder="Organization name" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);" />
+            <input type="text" name="contact" placeholder="Lab manager contact (name & email)" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);" />
+            <input type="text" name="address" placeholder="Address" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);" />
+            <input type="number" name="maxCapacity" placeholder="Max capacity" min="1" style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);" />
+      <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0;" aria-hidden="true" />
+            <button type="submit" class="btn primary" style="width:fit-content;">Submit application</button>
+            <div class="form-status" aria-live="polite" style="font-size:0.95rem;color:var(--ink-500);"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

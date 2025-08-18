@@ -1,0 +1,69 @@
+/* Base styles and CSS variables */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Root variables defining our palette and general sizing */
+:root {
+  --ink-900: #0B1220;
+  --ink-700: #2C3647;
+  --ink-500: #5B667A;
+  --bg-0: #FFFFFF;
+  --bg-50: #F7F9FC;
+  --line-200: #E6E9EF;
+
+  /* Primary (science blue) */
+  --p-700: #0747B6;
+  --p-600: #0B5FFF;
+  --p-100: #E6F0FF;
+
+  /* Secondary (clean teal) */
+  --s-600: #0FB5B5;
+  --s-300: #A8E6E0;
+
+  --radius: 12px;
+  --shadow: 0 10px 30px rgba(11, 18, 32, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'DM Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg-50);
+  color: var(--ink-700);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Keyboard navigation helpers */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  z-index: 2000;
+}
+
+.skip-link:focus { 
+  left: 16px; 
+}
+
+:focus-visible {
+  outline: 3px solid var(--p-600);
+  outline-offset: 2px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--p-600);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}

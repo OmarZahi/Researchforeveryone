@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+---
+<BaseLayout title="About | Research for Everyone" description="Learn about our mission and approach to safe, supervised lab access.">
+  <Header active="about" />
+  <main>
+    <Hero 
+      title="About Research for Everyone" 
+      subtitle="Our mission is to enable the next generation of makers and scientists with practical, supervised lab time without compromising safety." 
+      backgroundType="about"
+    />
+    <section class="reveal">
+      <div class="container">
+        <h2>Mission</h2>
+        <p>Research for Everyone exists to make hands‑on science accessible. We provide a clear pathway for students and early‑career researchers to get real laboratory experience through standardized safety training and supervised sessions at partner labs.</p>
+        <h2>Approach</h2>
+        <p>We align with each host lab’s SOPs, enforce strict supervision ratios and access controls, and keep all activities within BSL‑1 and basic digital fabrication tools.</p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
