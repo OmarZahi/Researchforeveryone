@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import TeamGrid from '../components/TeamGrid.astro';
 ---
 <BaseLayout title="About | Research for Everyone" description="Learn about our mission and approach to safe, supervised lab access.">
   <Header active="about" />
@@ -12,6 +13,13 @@ import Hero from '../components/Hero.astro';
       subtitle="Our mission is to enable the next generation of makers and scientists with practical, supervised lab time without compromising safety." 
       backgroundType="about"
     />
+    <section>
+      <div class="container">
+        <h2>Our team</h2>
+        <p class="sub">A growing network of mentors and partner lab operators supports our small core team.</p>
+        <TeamGrid members={[]} columns={3} />
+      </div>
+    </section>
     <section class="reveal">
       <div class="container">
         <h2>Mission</h2>

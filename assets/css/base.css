@@ -36,6 +36,15 @@ body {
   overflow-x: hidden;
 }
 
+/* Responsive sane defaults */
+*, *::before, *::after { box-sizing: border-box; }
+img, svg, video, canvas { max-width: 100%; height: auto; }
+picture { display: block; }
+button, input, textarea { font: inherit; }
+@media (max-width: 768px) {
+  body { -webkit-text-size-adjust: 100%; }
+}
+
 /* Keyboard navigation helpers */
 .skip-link {
   position: absolute;

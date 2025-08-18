@@ -2,16 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 ---
 <BaseLayout title="Book Sessions | Research for Everyone" description="Browse and register for upcoming supervised lab sessions.">
   <Header active="sessions" />
   <main>
-    <section class="hero sessions-hero">
-      <div class="container">
-        <h1>Upcoming sessions</h1>
-        <p>Browse our proposed sessions below. These examples illustrate the kinds of experiences you can expect once pilots begin.</p>
-      </div>
-    </section>
+    <Hero
+      title="Upcoming sessions"
+      subtitle="Browse our proposed sessions below. These examples illustrate the kinds of experiences you can expect once pilots begin."
+    />
 
     <section class="reveal">
       <div class="container">

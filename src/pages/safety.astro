@@ -2,16 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 ---
 <BaseLayout title="Safety & Policies | Research for Everyone" description="Understand the safety rules, supervision ratios and policies that protect all participants and host labs.">
   <Header active="safety" />
   <main>
-    <section class="hero safety-hero">
-      <div class="container">
-        <h1>Safety & Policies</h1>
-        <p>Strict safety policies ensure everyone is protected. Learn what’s allowed, required and expected.</p>
-      </div>
-    </section>
+    <Hero
+      title="Safety & Policies"
+      subtitle="Strict safety policies ensure everyone is protected. Learn what’s allowed, required and expected."
+    />
 
     <section class="reveal">
       <div class="container">

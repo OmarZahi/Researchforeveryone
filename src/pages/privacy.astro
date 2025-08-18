@@ -2,16 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 ---
 <BaseLayout title="Privacy Policy | Research for Everyone" description="Privacy policy for Research for Everyone.">
   <Header active="privacy" />
   <main>
-    <section class="hero privacy-hero">
-      <div class="container">
-        <h1>Privacy Policy</h1>
-        <p>We respect your privacy and are committed to protecting your personal data.</p>
-      </div>
-    </section>
+    <Hero
+      title="Privacy Policy"
+      subtitle="We respect your privacy and are committed to protecting your personal data."
+    />
     <section class="reveal">
       <div class="container">
         <p>This website collects only the information necessary to provide our services, such as names, email addresses and consent status. We do not sell your data and only share it with partner labs to facilitate bookings and ensure safety compliance. For minors, guardian consent information is stored as required by law. We may collect usage statistics to improve our services, but these are anonymized and do not identify individual users. If you have questions or would like us to delete your data, please <a href="/contact">contact us</a>.</p>

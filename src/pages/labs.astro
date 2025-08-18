@@ -2,17 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 ---
 <BaseLayout title="Labs & Universities | Research for Everyone" description="Partner with us: risk controls, insurance, economics and how to apply.">
   <Header active="labs" />
   <main>
-    <section class="hero labs-hero">
-      <div class="container">
-        <h1>Partner with us</h1>
-        <p>Off‑peak revenue on idle capacity. Pre‑trained visitors. Supervision and admin handled.</p>
-        <div class="cta-row"><a href="#partner-form" class="btn primary">Apply to Partner</a></div>
-      </div>
-    </section>
+    <Hero
+      title="Partner with us"
+      subtitle="Off-peak revenue on idle capacity. Pre-trained visitors. Supervision and admin handled."
+      primaryCta={{ text: 'Apply to Partner', href: '#partner-form' }}
+    />
     <section id="partner-form" class="reveal">
       <div class="container">
         <h2>Apply to Partner</h2>

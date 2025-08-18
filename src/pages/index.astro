@@ -7,7 +7,6 @@ import MotionWrapper from '../components/animations/MotionWrapper.astro';
 import FeatureGrid from '../components/FeatureGrid.astro';
 import Counter from '../components/Counter.astro';
 import ContactForm from '../components/ContactForm.astro';
-import TeamGrid from '../components/TeamGrid.astro';
 
 // Define content data for components
 const howItWorksFeatures = [
@@ -55,13 +54,6 @@ const testimonialFeatures = [
   { title: '', description: '"I never imagined I could work in a real lab before college. Now I\'ve completed three sessions and feel ready for internships." — M. Ahmed, Student' }
 ];
 
-// Placeholder team members
-const team = [
-  { name: 'Alex Johnson', role: 'Founder & Director', imgSrc: '/img/team-placeholder.png', bio: 'Leads partnerships and program design.' },
-  { name: 'Samira Lee', role: 'Operations Lead', imgSrc: '/img/team-placeholder.png', bio: 'Coordinates sessions and compliance.' },
-  { name: 'Diego Martín', role: 'Safety Trainer', imgSrc: '/img/team-placeholder.png', bio: 'Delivers Passport training.' },
-  { name: 'Priya Shah', role: 'Community Manager', imgSrc: '/img/team-placeholder.png', bio: 'Supports students and mentors.' }
-];
 ---
 <BaseLayout title="Research for Everyone | Safe, supervised lab access" description="Standardized safety training and operator-led lab sessions for students and early researchers.">
   <a href="#home" class="skip-link">Skip to content</a>
@@ -113,6 +105,52 @@ const team = [
       </section>
     </MotionWrapper>
 
+    <!-- Visits & Workshops (concept demo) -->
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+      <section id="visits-workshops">
+        <div class="container">
+          <h2>Visits & Workshops</h2>
+          <p class="sub">Book a guided lab visit with a subject expert, or register your interest in upcoming hands‑on workshops.</p>
+
+          <div class="offerings">
+            <div class="offering-card">
+              <div class="offering-head">
+                <h3>Guided Lab Visit</h3>
+                <p class="lead">Example: Prof. X at Lab Y</p>
+              </div>
+              <ul class="meta">
+                <li><strong>Duration:</strong> 90–120 minutes</li>
+                <li><strong>Participants:</strong> up to 12 per slot</li>
+                <li><strong>Instructor‑to‑participant ratio:</strong> 1:8 (or stricter)</li>
+                <li><strong>Format:</strong> safety briefing → instrument demo → Q&A</li>
+              </ul>
+              <div class="btn-row">
+                <a href="#register" class="btn primary">Register interest</a>
+                <a href="/sessions" class="btn outline">See sample sessions</a>
+              </div>
+            </div>
+
+            <div class="offering-card">
+              <div class="offering-head">
+                <h3>Hands‑on Workshop</h3>
+                <p class="lead">Example: Intro to 3D Printing</p>
+              </div>
+              <ul class="meta">
+                <li><strong>Duration:</strong> 2–3 hours</li>
+                <li><strong>Capacity:</strong> 8–16 depending on tools</li>
+                <li><strong>Instructor‑to‑participant ratio:</strong> 1:8 (fabrication), 1:4 (wet work)</li>
+                <li><strong>Outcome:</strong> complete a supervised exercise and take home your work</li>
+              </ul>
+              <div class="btn-row">
+                <a href="#register" class="btn primary">Register interest</a>
+                <a href="/passport" class="btn outline">Get the Passport</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </MotionWrapper>
+
     <!-- Product Section -->
     <MotionWrapper animation="fade-up" threshold={0.3}>
       <section id="product">
@@ -155,6 +193,60 @@ const team = [
     </section>
   </MotionWrapper>
 
+    <!-- Register interest (simple demo form) -->
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+      <section id="register">
+        <div class="container">
+          <h2>Register interest</h2>
+          <p class="sub">Tell us what you’re looking for and we’ll follow up with dates and availability.</p>
+          <form action="https://formspree.io/f/mzzvqeyk" method="POST" class="register-form" style="max-width:680px;">
+            <div class="grid">
+              <label>
+                <span>Full name</span>
+                <input name="fullName" type="text" required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input name="email" type="email" required />
+              </label>
+              <label>
+                <span>Organization / School</span>
+                <input name="org" type="text" />
+              </label>
+              <label>
+                <span>Group size</span>
+                <select name="groupSize">
+                  <option value="1-4">1–4</option>
+                  <option value="5-8">5–8</option>
+                  <option value="9-12">9–12</option>
+                  <option value="13+">13+</option>
+                </select>
+              </label>
+              <label>
+                <span>Interest</span>
+                <select name="interest" required>
+                  <option value="visit">Guided Lab Visit</option>
+                  <option value="workshop">Hands‑on Workshop</option>
+                </select>
+              </label>
+              <label>
+                <span>Preferred date</span>
+                <input name="date" type="date" />
+              </label>
+              <label class="full">
+                <span>Notes (topics, accessibility, location)</span>
+                <textarea name="notes" rows="4"></textarea>
+              </label>
+              <!-- anti‑spam honeypot -->
+              <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0;" aria-hidden="true" />
+            </div>
+            <button type="submit" class="btn primary" style="margin-top:16px;">Submit</button>
+            <p class="fineprint">Typical ratios: 1:8 for fabrication tools, 1:4 for wet benches. Activities remain within low‑risk scope and host SOPs.</p>
+          </form>
+        </div>
+      </section>
+    </MotionWrapper>
+
     <!-- Labs & Partners -->
   <MotionWrapper animation="fade-up" threshold={0.2}>
   <section id="labs">
@@ -189,17 +281,6 @@ const team = [
       <div class="container">
         <h2>Voices from the community</h2>
     <FeatureGrid features={testimonialFeatures} />
-      </div>
-    </section>
-  </MotionWrapper>
-
-  <!-- Team Section -->
-  <MotionWrapper animation="fade-up" threshold={0.2}>
-    <section id="team">
-      <div class="container">
-        <h2>Team</h2>
-        <p class="sub">The people behind Research for Everyone (placeholders).</p>
-        <TeamGrid members={team} />
       </div>
     </section>
   </MotionWrapper>
@@ -268,5 +349,26 @@ section p.sub { font-size: 1.125rem; color: var(--ink-500); margin-bottom: 32px;
 .partner-slider:hover .slide-track { animation-play-state: paused; }
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (max-width: 768px) { .product { gap: 24px; } }
+@media (max-width: 480px) {
+  section { padding: 48px 0; }
+  .metrics { gap: 16px; }
+  .partner-slider .slide-track img { height: 44px; margin: 0 24px; }
+}
+
+/* Offerings cards */
+.offerings { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.offering-card { background: var(--bg-0); border: 1px solid var(--line-200); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+.offering-head h3 { margin: 0; font-size: 1.5rem; color: var(--ink-900); }
+.offering-head .lead { margin: 4px 0 12px 0; color: var(--p-600); font-weight: 600; }
+.offering-card .meta { list-style: none; padding: 0; margin: 0 0 16px 0; color: var(--ink-600); }
+.offering-card .meta li { margin: 6px 0; }
+.register-form .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.register-form label { display: flex; flex-direction: column; gap: 6px; color: var(--ink-700); }
+.register-form label.full { grid-column: 1 / -1; }
+.register-form input, .register-form select, .register-form textarea { padding: 12px; border-radius: var(--radius); border: 1px solid var(--line-200); background: var(--bg-0); }
+.fineprint { margin-top: 8px; color: var(--ink-500); font-size: 0.95rem; }
+
+@media (max-width: 900px) { .offerings { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .register-form .grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .partner-slider .slide-track { animation: none !important; } }
 </style>

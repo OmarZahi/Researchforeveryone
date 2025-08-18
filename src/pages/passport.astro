@@ -2,19 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 ---
 <BaseLayout title="Lab Readiness Passport | Research for Everyone" description="Learn about the Passport safety course: modules, assessment and consent requirements.">
   <Header active="passport" />
   <main>
-    <section class="hero passport-hero">
-      <div class="container">
-        <h1>Earn your Lab Readiness Passport</h1>
-        <p>Standardized safety training and assessment to earn your badge for supervised access to real labs.</p>
-        <div class="cta-row">
-          <a href="#enroll" class="btn primary">Enroll now</a>
-        </div>
-      </div>
-    </section>
+    <Hero
+      title="Earn your Lab Readiness Passport"
+      subtitle="Standardized safety training and assessment to earn your badge for supervised access to real labs."
+      primaryCta={{ text: 'Enroll now', href: '#enroll' }}
+    />
 
     <section class="reveal">
       <div class="container">

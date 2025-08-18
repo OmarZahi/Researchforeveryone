@@ -2,17 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
 import MotionWrapper from '../components/animations/MotionWrapper.astro';
 ---
 <BaseLayout title="FAQ | Research for Everyone" description="Frequently asked questions about participation, safety, activities and policies.">
   <Header active="faq" />
   <main>
-    <section class="hero faq-hero">
-      <div class="container">
-        <h1>Frequently asked questions</h1>
-        <p>If something’s missing here, contact us and we’ll help.</p>
-      </div>
-    </section>
+    <Hero
+      title="Frequently asked questions"
+      subtitle="If something’s missing here, contact us and we’ll help."
+    />
     <MotionWrapper animation="fade-up" threshold={0.2}>
       <section>
         <div class="container">
