@@ -1,0 +1,54 @@
+---
+import GoogleLayout from '../../layouts/GoogleLayout.astro';
+import MotionWrapper from '../../components/animations/MotionWrapper.astro';
+import ProgramSubNav from '../../components/program/ProgramSubNav.astro';
+import { projects, alumni } from "../../data/program";
+---
+
+<GoogleLayout title="Projects | Research Fellowship">
+  <ProgramSubNav current="projects" />
+  
+  <MotionWrapper>
+    <div class="pt-12 pb-24 px-6 max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-16">
+        <h1 class="text-5xl md:text-7xl font-display tracking-tight mb-6">
+          Projects
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 leading-relaxed">
+          Recent fellow work. Each capstone is scoped with a mentor so it stays safe, publishable, and easy to share with partners.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32">
+        {projects.map((project) => (
+          <article class="bg-white border border-gray-200 p-8 rounded-3xl hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+            <header class="mb-4">
+              <span class="text-sm font-bold text-blue-600 uppercase tracking-wider mb-2 block">{project.season}</span>
+              <h3 class="text-2xl font-display mb-2">{project.title}</h3>
+            </header>
+            <p class="text-gray-600 mb-6 flex-grow leading-relaxed">{project.desc}</p>
+            <div class="pt-6 border-t border-gray-100">
+              <p class="text-sm text-gray-500 font-medium">{project.tags}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <section class="bg-gray-50 rounded-[3rem] p-12 md:p-24">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-display mb-6">Where fellows go next</h2>
+          <p class="text-xl text-gray-600">Many join university labs, launch community projects, or keep working with our partners.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {alumni.map((person) => (
+            <blockquote class="bg-white p-8 rounded-3xl shadow-sm">
+              <p class="text-xl text-gray-800 italic mb-6 leading-relaxed">“{person.quote}”</p>
+              <cite class="not-italic font-bold text-gray-900 block">— {person.name}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </section>
+    </div>
+  </MotionWrapper>
+</GoogleLayout>

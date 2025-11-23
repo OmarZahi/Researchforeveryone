@@ -1,0 +1,21 @@
+---
+---
+<style>
+  .module{background:#fff;padding:1.15rem;border-radius:1rem;border:1px solid rgba(37,99,235,0.15);box-shadow:0 15px 35px rgba(15,23,42,0.05)}
+  .module h4{margin:0 0 0.4rem;color:#0f172a;font-size:1.1rem}
+  .module p{margin:0;color:#4c5874;line-height:1.45}
+  .pill{display:inline-block;background:#dbeafe;color:#1e3a8a;padding:0.25rem 0.75rem;border-radius:999px;font-size:0.8rem;font-weight:600}
+</style>
+
+<article class="module">
+  <div style="display:flex;gap:0.75rem;align-items:flex-start">
+    <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#38bdf8);display:flex;align-items:center;justify-content:center;color:#e0f2ff;flex-shrink:0;font-size:1.25rem">
+      <slot name="icon">📘</slot>
+    </div>
+    <div>
+      <h4><slot name="title">Module Title</slot></h4>
+      <p><slot name="desc">Short description of the module learning outcomes and hands-on tasks.</slot></p>
+      <div style="margin-top:0.5rem"><span class="pill"><slot name="time">2 weeks</slot></span></div>
+    </div>
+  </div>
+</article>

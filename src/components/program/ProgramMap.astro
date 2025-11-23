@@ -1,0 +1,30 @@
+---
+interface Marker {
+  name: string;
+  x: number; // percentage
+  y: number;
+}
+const { markers = [] as Marker[] } = Astro.props;
+---
+
+<section class="program-section" aria-label="Locations">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Locations</p>
+      <h2>Studios across Egypt</h2>
+      <p>Markers show where we regularly run sessions. Exact addresses are shared privately with fellows.</p>
+    </div>
+  </div>
+  <div class="egypt-map">
+    <svg viewBox="0 0 420 420" role="img" aria-label="Stylized map of Egypt">
+      <path class="map-shape" d="M48 68 L360 52 L392 120 L332 210 L384 348 L88 360 L36 220 Z" />
+      <path class="nile" d="M190 60 C210 120 210 200 220 276 C226 320 230 350 232 370" />
+      {markers.map((marker) => (
+        <g class="map-marker" transform={`translate(${marker.x * 3.6}, ${marker.y * 3.6})`}>
+          <circle r="9" />
+          <text dy="-14">{marker.name}</text>
+        </g>
+      ))}
+    </svg>
+  </div>
+</section>

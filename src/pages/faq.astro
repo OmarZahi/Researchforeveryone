@@ -1,0 +1,57 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+
+const faqs = [
+  { q: "Who can participate?", a: "High school students, undergraduates and recent graduates are eligible. Participants under 18 require guardian consent and a chaperone." },
+  { q: "What activities are allowed?", a: "Only low‑risk Biosafety Level‑1 biology and basic digital fabrication under supervision. No pathogens or hazardous chemistry." },
+  { q: "Do minors need consent?", a: "Yes. A parent or legal guardian must sign a consent and waiver form before the minor can enroll or attend sessions." },
+  { q: "How long is the training?", a: "The Passport course takes 3–4 hours including the exam. Supervised lab sessions typically run between 1 and 3 hours." },
+  { q: "Is there insurance?", a: "Sessions operate under the host lab’s liability policy and any additional event insurance agreed to in the memorandum of understanding." }
+];
+---
+
+<GoogleLayout title="FAQ | Research for Everyone" description="Frequently asked questions about participation, safety, activities and policies.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Frequently asked questions
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          If something’s missing here, contact us and we’ll help.
+        </p>
+      </MotionWrapper>
+
+      <div class="max-w-3xl">
+        <MotionWrapper animation="fade-up" delay={0.2}>
+          <div class="space-y-4">
+            {faqs.map((faq) => (
+              <details class="group bg-gray-50 rounded-2xl open:bg-white open:shadow-sm open:ring-1 open:ring-gray-100 transition-all duration-300">
+                <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+                  <h3 class="text-lg font-medium text-gray-900">{faq.q}</h3>
+                  <span class="text-blue-600 transform group-open:rotate-180 transition-transform duration-300">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                  </span>
+                </summary>
+                <div class="px-6 pb-6 text-gray-600 leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </MotionWrapper>
+      </div>
+    </section>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  })} />
+</GoogleLayout>

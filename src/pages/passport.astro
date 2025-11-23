@@ -1,0 +1,114 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+
+<GoogleLayout title="Lab Readiness Passport | Research for Everyone" description="Learn about the Passport safety course: modules, assessment and consent requirements.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Earn your Lab Readiness Passport
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          Standardized safety training and assessment to earn your badge for supervised access to real labs.
+        </p>
+        <a href="#enroll" class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-blue-700 transition-colors inline-block">
+          Enroll now
+        </a>
+      </MotionWrapper>
+    </section>
+
+    <section class="py-24 border-t border-gray-100">
+      <MotionWrapper animation="fade-up">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Modules</h3>
+            <p class="text-gray-600 leading-relaxed">
+              General lab safety (PPE, signage, housekeeping, emergencies), BSL‑1 biosafety basics, basic electrical and mechanical safety for fabrication tools, code of conduct & harassment prevention, waste disposal and incident reporting.
+            </p>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Assessment</h3>
+            <p class="text-gray-600 leading-relaxed">
+              A mix of multiple‑choice questions and hands‑on demonstration. Badges are valid for 12 months and may be revoked for safety violations.
+            </p>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Parental consent</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Participants under 18 require a guardian to sign the consent and waiver forms. A named chaperone must accompany the minor during sessions.
+            </p>
+          </div>
+        </div>
+      </MotionWrapper>
+    </section>
+
+    <section id="enroll" class="py-24 border-t border-gray-100">
+      <div class="max-w-2xl">
+        <MotionWrapper animation="fade-up">
+          <h2 class="text-3xl md:text-4xl font-medium text-gray-900 mb-6">Enroll in Passport</h2>
+          <p class="text-lg text-gray-600 mb-12">Sign up for the next safety class. We will confirm dates and logistics by email.</p>
+          
+          <form class="ajax-form space-y-6" data-form-endpoint="https://formspree.io/f/mzzvqeyk">
+            <div>
+              <input type="text" name="fullName" placeholder="Your full name" autocomplete="name" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+            </div>
+            <div>
+              <input type="email" name="email" placeholder="Your email" autocomplete="email" required class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+            </div>
+            <div>
+              <input type="text" name="school" placeholder="School/University" class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+            </div>
+            <div>
+              <input type="text" name="age" placeholder="Age" inputmode="numeric" class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all" />
+            </div>
+            <div>
+              <textarea name="notes" placeholder="Accessibility needs or questions" rows="3" class="w-full p-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition-all"></textarea>
+            </div>
+            <input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+            
+            <button type="submit" class="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-colors w-full md:w-auto">
+              Submit registration
+            </button>
+            <div class="form-status text-sm text-gray-500 mt-4" aria-live="polite"></div>
+          </form>
+        </MotionWrapper>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline>
+    (function(init){
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+      else init();
+    })(() => {
+      const form = document.querySelector('#enroll form.ajax-form');
+      if (!form) return;
+      const status = form.querySelector('.form-status');
+      const endpoint = form.getAttribute('data-form-endpoint') || '';
+      const honeypot = form.querySelector('input[name="company"]');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (honeypot && honeypot.value) { if (status) status.textContent = 'Thanks!'; form.reset(); return; }
+        if (!endpoint) { if (status) status.textContent = 'Thanks! Your message was captured locally.'; form.reset(); return; }
+        const formData = new FormData(form);
+        if (status) { status.style.color = '#6b7280'; status.textContent = 'Sending…'; }
+        fetch(endpoint, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+        .then((res) => {
+          if (res.ok) { if (status) { status.style.color = '#2563eb'; status.textContent = 'Thank you! We\'ll be in touch.'; } form.reset(); }
+          else { return res.json().catch(() => ({})).then((data) => { throw new Error(data.error || 'Submission failed.'); }); }
+        })
+        .catch((err) => { if (status) { status.style.color = '#dc2626'; status.textContent = 'Oops, something went wrong. Please email Omar.2123039@stemobour.moe.edu.eg'; } console.error(err); });
+      });
+    });
+  </script>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": "Lab Readiness Passport",
+    "description": "A 3–4 hour safety course covering general lab safety, BSL‑1 biosafety and basic fabrication tools. Pass the exam to earn a 12‑month badge.",
+    "provider": { "@type": "Organization", "name": "Research for Everyone", "sameAs": "https://researchforeveryone.org" }
+  })} />
+</GoogleLayout>

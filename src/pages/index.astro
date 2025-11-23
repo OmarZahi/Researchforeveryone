@@ -1,0 +1,206 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+import { programTracks } from '../data/program';
+
+const aboutCards = [
+  { title: 'Onboarding squads', description: 'We place learners in small pods with a coach who stays with them through every visit.' },
+  { title: 'Clear playbooks', description: 'Each session comes with printable briefs, playlists, and the exact tools we will touch.' },
+  { title: 'Showcase ready', description: 'Students wrap with photo-ready logs and reflections they can share with families and schools.' }
+];
+
+const aboutList = [
+  'Small, supervised sessions across Cairo and Alexandria',
+  'Flexible weekend and after-school slots',
+  'Mentors who speak the same language as our students'
+];
+
+const disciplinePrograms = programTracks.map((track) => ({
+  id: track.id,
+  title: track.title,
+  tag: track.tag,
+  description: track.blurb || track.description,
+}));
+
+const experienceHighlights = [
+  { title: 'Guided entries', description: 'Operators meet every group at the door, set expectations, and keep the pace welcoming.' },
+  { title: 'Studio playlists', description: 'We pair each visit with music, lighting, and visuals so the space feels alive.' },
+  { title: 'Story-driven notes', description: 'Each cohort leaves with a simple recap so families and teachers can follow along.' }
+];
+
+const labBenefits = [
+  { title: 'Simple coordination', description: 'We match your calendar, handle RSVPs, and keep things on time.' },
+  { title: 'Ready-made materials', description: 'Prep lists, waivers, and signage arrive before the session so nothing feels rushed.' },
+  { title: 'Shared momentum', description: 'We capture photos, quotes, and light data so your lab’s impact is seen.' }
+];
+
+const storyQuotes = [
+  { quote: '“Our biology club finally works with real microscopes every month. The mentors feel like older siblings.”', source: 'Mina, Student Lead' },
+  { quote: '“Coordination was effortless. The team arrived early, briefed everyone, and left the lab spotless.”', source: 'Dr. Salma, Lab Director' },
+  { quote: '“I saw my son come home excited about chemistry for the first time. He even shared the recap deck with his class.”', source: 'Mrs. Adel, Parent' }
+];
+---
+
+<GoogleLayout title="Research for Everyone">
+    <!-- Hero Section -->
+    <section class="px-6 mb-32">
+      <div class="max-w-7xl mx-auto">
+        <MotionWrapper animation="fade-up" duration={0.8}>
+          <h1 class="text-6xl md:text-8xl font-medium tracking-tighter text-gray-900 mb-8 leading-[1.1]">
+            Democratizing <br />
+            <span class="text-gray-400">Lab Access.</span>
+          </h1>
+        </MotionWrapper>
+        
+        <MotionWrapper animation="fade-up" delay={0.2} duration={0.8}>
+          <p class="text-xl md:text-2xl text-gray-600 max-w-2xl leading-relaxed mb-12">
+            We host classrooms, clubs, and solo learners inside Egyptian labs with calm studio energy.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/programs/admissions" class="bg-gray-900 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-800 transition-all hover:scale-105">
+              Start your journey
+            </a>
+            <a href="#about" class="bg-gray-100 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-200 transition-all">
+              Learn more
+            </a>
+          </div>
+        </MotionWrapper>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="px-6 py-24 bg-gray-50 rounded-[3rem] mx-4 mb-24">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 mb-20">
+          <MotionWrapper animation="fade-up">
+            <span class="text-blue-600 font-medium mb-4 block">About us</span>
+            <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-gray-900 mb-6">
+              Lab access that feels welcoming.
+            </h2>
+            <p class="text-xl text-gray-600 leading-relaxed">
+              We build calm, beautiful lab moments where young researchers feel trusted. Every visit comes with a host, a plan, and enough breathing room to try things twice.
+            </p>
+          </MotionWrapper>
+          
+          <div class="space-y-4">
+            {aboutList.map((item, i) => (
+              <MotionWrapper animation="fade-up" delay={i * 0.1}>
+                <div class="flex items-center gap-4 p-4 bg-white rounded-2xl border border-gray-100">
+                  <div class="w-2 h-2 rounded-full bg-blue-600"></div>
+                  <span class="text-lg text-gray-800">{item}</span>
+                </div>
+              </MotionWrapper>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          {aboutCards.map((card, i) => (
+            <MotionWrapper animation="fade-up" delay={0.2 + (i * 0.1)}>
+              <div class="bg-white p-8 rounded-3xl h-full border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-2xl font-medium text-gray-900 mb-4">{card.title}</h3>
+                <p class="text-gray-600 leading-relaxed">{card.description}</p>
+              </div>
+            </MotionWrapper>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="px-6 py-24">
+      <div class="max-w-7xl mx-auto">
+        <MotionWrapper animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-gray-900 mb-6">Programs by discipline</h2>
+          <p class="text-xl text-gray-600 mb-16 max-w-2xl">Biology, chemistry, electronics, fabrication, climate, and more—each with its own vibe.</p>
+        </MotionWrapper>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {disciplinePrograms.map((program, i) => (
+            <MotionWrapper animation="fade-up" delay={i * 0.1}>
+              <a href={`/programs/details#${program.id}`} class="group block bg-gray-50 p-8 rounded-3xl hover:bg-gray-900 transition-colors duration-500 h-full relative overflow-hidden">
+                <div class="relative z-10">
+                  <span class="inline-block px-3 py-1 rounded-full bg-white/50 text-sm font-medium text-gray-900 mb-6 group-hover:bg-white/20 group-hover:text-white transition-colors">
+                    {program.tag}
+                  </span>
+                  <h3 class="text-2xl font-medium text-gray-900 mb-3 group-hover:text-white transition-colors">{program.title}</h3>
+                  <p class="text-gray-600 group-hover:text-gray-300 transition-colors">{program.description}</p>
+                </div>
+                <div class="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                  <span class="text-white text-2xl">→</span>
+                </div>
+              </a>
+            </MotionWrapper>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="px-6 py-24 bg-black text-white rounded-[3rem] mx-4">
+      <div class="max-w-7xl mx-auto">
+        <MotionWrapper animation="fade-up">
+          <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-16">The Experience</h2>
+        </MotionWrapper>
+
+        <div class="grid md:grid-cols-3 gap-12">
+          {experienceHighlights.map((item, i) => (
+            <MotionWrapper animation="fade-up" delay={i * 0.1}>
+              <div class="border-l border-gray-800 pl-8">
+                <h3 class="text-2xl font-medium mb-4 text-blue-400">{item.title}</h3>
+                <p class="text-gray-400 leading-relaxed">{item.description}</p>
+              </div>
+            </MotionWrapper>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Labs Section -->
+    <section id="labs" class="px-6 py-24">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-blue-50 rounded-[3rem] p-12 md:p-24">
+          <div class="grid md:grid-cols-2 gap-16 items-center">
+            <MotionWrapper animation="fade-up">
+              <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-gray-900 mb-8">
+                Partner with us.
+              </h2>
+              <p class="text-xl text-gray-600 mb-12">
+                Labs that host our sessions get organized, vetted visitors without the administrative headache.
+              </p>
+              <a href="/contact" class="inline-block bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-blue-700 transition-colors">
+                Become a partner
+              </a>
+            </MotionWrapper>
+
+            <div class="space-y-8">
+              {labBenefits.map((benefit, i) => (
+                <MotionWrapper animation="fade-up" delay={i * 0.1}>
+                  <div class="bg-white p-6 rounded-2xl shadow-sm">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">{benefit.title}</h3>
+                    <p class="text-gray-600">{benefit.description}</p>
+                  </div>
+                </MotionWrapper>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="px-6 py-24 mb-24">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-8">
+          {storyQuotes.map((quote, i) => (
+            <MotionWrapper animation="fade-up" delay={i * 0.1}>
+              <div class="bg-gray-50 p-10 rounded-3xl h-full flex flex-col justify-between">
+                <p class="text-xl text-gray-800 font-medium mb-8 leading-relaxed">{quote.quote}</p>
+                <p class="text-gray-500">{quote.source}</p>
+              </div>
+            </MotionWrapper>
+          ))}
+        </div>
+      </div>
+    </section>
+</GoogleLayout>

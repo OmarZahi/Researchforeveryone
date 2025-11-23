@@ -1,0 +1,84 @@
+---
+import MotionWrapper from './animations/MotionWrapper.astro';
+
+// Feature Grid component with stagger animations
+export interface Feature {
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  features: Feature[];
+  columns?: number;
+}
+
+const { features, columns = 3 } = Astro.props;
+const gridClass = `features features-${columns}`;
+---
+
+<MotionWrapper animation="stagger" class={gridClass}>
+  {features.map((feature) => (
+    <div class="feature">
+      <h3>{feature.title}</h3>
+      <p>{feature.description}</p>
+    </div>
+  ))}
+</MotionWrapper>
+
+<style>
+.feature {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(223, 234, 255, 0.85));
+  border: 1px solid rgba(80, 112, 255, 0.18);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 24px 55px rgba(14, 24, 44, 0.14);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 0%, rgba(88, 141, 255, 0.25), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px rgba(5, 12, 32, 0.22);
+}
+
+.feature:hover::after { opacity: 1; }
+
+.feature h3 { margin: 0 0 8px; font-size: 1.2rem; color: var(--ink-900); position: relative; z-index: 1; }
+.feature p { margin: 0; color: var(--ink-600); position: relative; z-index: 1; }
+
+.features-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.features-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.features-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .features-2,
+  .features-3,
+  .features-4 {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

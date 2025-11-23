@@ -1,0 +1,67 @@
+---
+// Animated Counter component
+export interface Props {
+  target: number;
+  label: string;
+  duration?: number;
+  suffix?: string;
+}
+
+const { target, label, duration = 2, suffix = '' } = Astro.props;
+---
+
+<div class="metric">
+  <span class="count" data-target={target} data-duration={duration} data-suffix={suffix}>0</span>
+  <p>{label}</p>
+</div>
+
+<script>
+// Counter animation function
+function animateCounter(element: HTMLElement) {
+  const target = parseInt(element.dataset.target || '0', 10);
+  const duration = parseFloat(element.dataset.duration || '2') * 1000; // Convert to milliseconds
+  const suffix = element.dataset.suffix || '';
+  
+  let current = 0;
+  const startTime = Date.now();
+  
+  function update() {
+    const elapsed = Date.now() - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function for smooth animation
+    const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+    current = Math.floor(easeOutCubic * target);
+    element.textContent = current + suffix;
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      element.textContent = target + suffix;
+    }
+  }
+  
+  requestAnimationFrame(update);
+}
+
+// Start when visible once
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.currentScript?.previousElementSibling?.querySelector('.count') as HTMLElement | null;
+  if (!el) return;
+  if ('IntersectionObserver' in window) {
+    let done = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !done) {
+          done = true;
+          animateCounter(el);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+    io.observe(el);
+  } else {
+    animateCounter(el);
+  }
+});
+</script>

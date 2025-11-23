@@ -1,0 +1,56 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+
+<GoogleLayout title="Book Sessions | Research for Everyone" description="Browse and register for upcoming supervised lab sessions.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Upcoming sessions
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          Browse our proposed sessions below. These examples illustrate the kinds of experiences you can expect once pilots begin.
+        </p>
+      </MotionWrapper>
+    </section>
+
+    <section class="py-24 border-t border-gray-100">
+      <MotionWrapper animation="fade-up">
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Intro to 3D Printing</h3>
+            <p class="text-sm text-blue-600 font-medium mb-4">Date: TBA · Duration: 2h · Ratio: 1:8 · Price: £TBA</p>
+            <p class="text-gray-600 mb-8">Overview: Learn FDM printing basics, practice safe setup and print your first simple part. Materials included.</p>
+            <a href="#" class="inline-block px-6 py-3 rounded-full border border-gray-200 text-gray-900 font-medium hover:bg-gray-50 transition-colors">
+              Register interest
+            </a>
+          </div>
+          
+          <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Microscopy Demo Day</h3>
+            <p class="text-sm text-blue-600 font-medium mb-4">Date: TBA · Duration: 2h · Ratio: 1:6 · Price: £TBA</p>
+            <p class="text-gray-600 mb-8">Overview: Observe prepared slides on compound microscopes, discuss imaging basics and learn cleaning procedures.</p>
+            <a href="#" class="inline-block px-6 py-3 rounded-full border border-gray-200 text-gray-900 font-medium hover:bg-gray-50 transition-colors">
+              Register interest
+            </a>
+          </div>
+          
+          <div class="bg-white p-8 rounded-3xl border border-gray-100 hover:shadow-lg transition-shadow">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Electronics Soldering Workshop</h3>
+            <p class="text-sm text-blue-600 font-medium mb-4">Date: TBA · Duration: 2h · Ratio: 1:6 · Price: £TBA</p>
+            <p class="text-gray-600 mb-8">Overview: Master safe soldering techniques and assemble a simple electronic kit under close supervision.</p>
+            <a href="#" class="inline-block px-6 py-3 rounded-full border border-gray-200 text-gray-900 font-medium hover:bg-gray-50 transition-colors">
+              Register interest
+            </a>
+          </div>
+        </div>
+        
+        <p class="text-gray-500 text-center max-w-2xl mx-auto">
+          We will publish confirmed dates, locations and prices once host labs are finalized. Register your interest now and we will notify you when scheduling opens.
+        </p>
+      </MotionWrapper>
+    </section>
+  </div>
+</GoogleLayout>

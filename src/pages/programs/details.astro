@@ -1,0 +1,211 @@
+---
+import GoogleLayout from "../../layouts/GoogleLayout.astro";
+import ProgramSubNav from "../../components/program/ProgramSubNav.astro";
+import MotionWrapper from "../../components/animations/MotionWrapper.astro";
+import { programTracks } from "../../data/program";
+
+const initialTrack = programTracks[0];
+---
+
+<GoogleLayout title="Research Fellowship • Details">
+  <ProgramSubNav current="details" />
+
+  <div class="max-w-7xl mx-auto px-6 pb-24">
+    <!-- Hero -->
+    <section class="py-16 md:py-24">
+      <MotionWrapper animation="fade-up">
+        <span class="text-blue-600 font-medium mb-4 block">Program details</span>
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Every track mixes online theory with supervised lab time.
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed">
+          Fellows move through self-paced prep during the week, then show up ready to test their hypotheses in Egyptian labs each weekend.
+        </p>
+      </MotionWrapper>
+    </section>
+
+    <!-- Tracks Interface -->
+    <section class="py-12 border-t border-gray-100">
+      <MotionWrapper animation="fade-up">
+        <div class="mb-12">
+          <span class="text-blue-600 font-medium mb-2 block">Pick a focus</span>
+          <h2 class="text-3xl md:text-4xl font-medium text-gray-900 mb-4">
+            Tap a discipline to see details
+          </h2>
+          <p class="text-gray-500">These tracks mirror the cards you saw on the Overview tab.</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex flex-wrap gap-4 mb-12" role="tablist">
+          {programTracks.map((track, index) => (
+            <button 
+              type="button" 
+              class={`track-tab px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border ${index === 0 ? 'bg-gray-900 text-white border-gray-900' : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400'}`}
+              data-track={track.id}
+              aria-pressed={index === 0 ? "true" : "false"}
+            >
+              <span class="opacity-70 mr-2">{track.tag}</span>
+              {track.title}
+            </button>
+          ))}
+        </div>
+
+        <!-- Content Panel -->
+        <div id="track-panel" class="grid lg:grid-cols-3 gap-12 animate-fade-in">
+          <!-- Sidebar Info -->
+          <div class="lg:col-span-1 space-y-8">
+            <div class="bg-blue-50 p-8 rounded-3xl">
+              <span id="track-tag" class="inline-block px-3 py-1 rounded-full bg-white text-blue-600 text-xs font-bold mb-4">{initialTrack.tag}</span>
+              <h3 id="track-title" class="text-2xl font-medium text-gray-900 mb-4">{initialTrack.title}</h3>
+              <p id="track-description" class="text-gray-600 mb-8">{initialTrack.description}</p>
+              
+              <div class="space-y-4 text-sm">
+                <div class="flex justify-between border-b border-blue-100 pb-2">
+                  <span class="text-gray-500">Duration</span>
+                  <strong id="track-duration" class="text-gray-900">{initialTrack.duration}</strong>
+                </div>
+                <div class="flex justify-between border-b border-blue-100 pb-2">
+                  <span class="text-gray-500">Weekly time</span>
+                  <strong id="track-weekly" class="text-gray-900">{initialTrack.weeklyTime}</strong>
+                </div>
+                <div class="flex justify-between border-b border-blue-100 pb-2">
+                  <span class="text-gray-500">Difficulty</span>
+                  <strong id="track-difficulty" class="text-gray-900">{initialTrack.difficulty}</strong>
+                </div>
+                <div class="flex justify-between border-b border-blue-100 pb-2">
+                  <span class="text-gray-500">Total cost</span>
+                  <strong id="track-cost" class="text-gray-900">{initialTrack.cost}</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-3xl border border-gray-100">
+              <h4 class="font-medium text-gray-900 mb-4">Requirements</h4>
+              <ul id="track-reqs" class="space-y-3 text-gray-600 text-sm">
+                {initialTrack.requirements.map((req) => (
+                  <li class="flex gap-3">
+                    <span class="text-blue-600">•</span>
+                    {req}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Main Content -->
+          <div class="lg:col-span-2 space-y-12">
+            <div>
+              <h3 class="text-2xl font-medium text-gray-900 mb-8">Program content</h3>
+              <div id="track-modules" class="grid gap-6">
+                {initialTrack.modules.map((module) => (
+                  <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+                    <span class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2 block">{module.week}</span>
+                    <h5 class="text-xl font-medium text-gray-900 mb-2">{module.title}</h5>
+                    <p class="text-gray-600 mb-4">{module.summary}</p>
+                    <ul class="flex flex-wrap gap-2">
+                      {module.takeaways?.map((point) => (
+                        <li class="bg-gray-50 px-3 py-1 rounded-lg text-xs text-gray-600">{point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-medium text-gray-900 mb-8">FAQs</h3>
+              <div id="track-faq" class="grid md:grid-cols-2 gap-6">
+                {initialTrack.faqs.map((faq) => (
+                  <div class="bg-gray-50 p-6 rounded-2xl">
+                    <h5 class="font-medium text-gray-900 mb-2">{faq.question}</h5>
+                    <p class="text-sm text-gray-600">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </MotionWrapper>
+    </section>
+  </div>
+
+  <script is:inline define:vars={{ programTracks }}>
+    const tabs = document.querySelectorAll('.track-tab');
+    const panel = document.getElementById('track-panel');
+    
+    // Elements to update
+    const els = {
+      tag: document.getElementById('track-tag'),
+      title: document.getElementById('track-title'),
+      desc: document.getElementById('track-description'),
+      duration: document.getElementById('track-duration'),
+      weekly: document.getElementById('track-weekly'),
+      difficulty: document.getElementById('track-difficulty'),
+      cost: document.getElementById('track-cost'),
+      reqs: document.getElementById('track-reqs'),
+      modules: document.getElementById('track-modules'),
+      faq: document.getElementById('track-faq')
+    };
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const trackId = tab.dataset.track;
+        const track = programTracks.find(t => t.id === trackId);
+        if (!track) return;
+
+        // Update active state
+        tabs.forEach(t => {
+          t.setAttribute('aria-pressed', 'false');
+          t.className = 'track-tab px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border bg-white text-gray-600 border-gray-200 hover:border-gray-400';
+        });
+        tab.setAttribute('aria-pressed', 'true');
+        tab.className = 'track-tab px-6 py-3 rounded-full text-sm font-medium transition-all duration-200 border bg-gray-900 text-white border-gray-900';
+
+        // Animate out
+        panel.style.opacity = '0.5';
+        panel.style.transform = 'translateY(10px)';
+        
+        setTimeout(() => {
+          // Update content
+          els.tag.textContent = track.tag;
+          els.title.textContent = track.title;
+          els.desc.textContent = track.description;
+          els.duration.textContent = track.duration;
+          els.weekly.textContent = track.weeklyTime;
+          els.difficulty.textContent = track.difficulty;
+          els.cost.textContent = track.cost;
+
+          // Update lists
+          els.reqs.innerHTML = track.requirements.map(req => `
+            <li class="flex gap-3"><span class="text-blue-600">•</span>${req}</li>
+          `).join('');
+
+          els.modules.innerHTML = track.modules.map(m => `
+            <div class="bg-white p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
+              <span class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-2 block">${m.week}</span>
+              <h5 class="text-xl font-medium text-gray-900 mb-2">${m.title}</h5>
+              <p class="text-gray-600 mb-4">${m.summary}</p>
+              <ul class="flex flex-wrap gap-2">
+                ${m.takeaways?.map(p => `<li class="bg-gray-50 px-3 py-1 rounded-lg text-xs text-gray-600">${p}</li>`).join('') || ''}
+              </ul>
+            </div>
+          `).join('');
+
+          els.faq.innerHTML = track.faqs.map(f => `
+            <div class="bg-gray-50 p-6 rounded-2xl">
+              <h5 class="font-medium text-gray-900 mb-2">${f.question}</h5>
+              <p class="text-sm text-gray-600">${f.answer}</p>
+            </div>
+          `).join('');
+
+          // Animate in
+          panel.style.opacity = '1';
+          panel.style.transform = 'translateY(0)';
+        }, 200);
+      });
+    });
+
+    // Add transition styles to panel
+    panel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  </script>
+</GoogleLayout>

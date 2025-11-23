@@ -1,0 +1,22 @@
+---
+const { title = 'Research for Everyone', description = 'Standardized safety training and operator-led lab sessions for students and early researchers.' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0B5FFF" />
+  <!-- Favicons -->
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/logo.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

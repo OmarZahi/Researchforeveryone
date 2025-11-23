@@ -1,0 +1,195 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+
+const heroStats = [
+  { label: 'Duration', value: '12 weeks', detail: 'Hybrid cohorts' },
+  { label: 'Lab hours', value: '120+', detail: 'Operator-supervised' },
+  { label: 'Scholarships', value: '40%', detail: 'Need-based seats' }
+];
+
+const programStack = [
+  {
+    title: 'Passport Certification',
+    summary: 'Intensive safety sprint covering biosafety, fabrication, and ethics with live check-offs.',
+    chips: ['4-hr intensive', 'Simulation exam', 'Valid 12 months']
+  },
+  {
+    title: 'Operator-led Lab Sessions',
+    summary: 'Weekly deep dives inside vetted partner labs with fixed ratios and pre-approved SOPs.',
+    chips: ['1:6 fabrication', '1:4 wet lab', 'Documented logs']
+  },
+  {
+    title: 'Mentored Research Studio',
+    summary: 'Micro-research briefs translated into measurable experiments with coaching on storytelling.',
+    chips: ['Project brief', 'Data review', 'Showcase night']
+  }
+];
+
+const timelinePhases = [
+  {
+    phase: 'Phase 0',
+    title: 'Ignition',
+    week: 'Week 0',
+    focus: 'Orientation + guardians + equipment agreements.',
+    artifact: 'Consent + readiness dossier',
+    ratio: '1:10 cohort guides'
+  },
+  {
+    phase: 'Phase 1',
+    title: 'Onboarding Sprints',
+    week: 'Weeks 1-2',
+    focus: 'Safety labs, tool simulations, and protocol rehearsals.',
+    artifact: 'Passport badge + checklist',
+    ratio: '1:8 operators'
+  },
+  {
+    phase: 'Phase 2',
+    title: 'Sprint Labs',
+    week: 'Weeks 3-6',
+    focus: 'Rotations through biofoundry, microfab, and data labs.',
+    artifact: 'Lab reflections + data snippets',
+    ratio: '1:6 fabrication / 1:4 wet bench'
+  },
+  {
+    phase: 'Phase 3',
+    title: 'Guided Research',
+    week: 'Weeks 7-10',
+    focus: 'Small teams pursue approved briefs with mentoring.',
+    artifact: 'Protocol + annotated dataset',
+    ratio: 'Mentor + operator'
+  },
+  {
+    phase: 'Phase 4',
+    title: 'Showcase Orbit',
+    week: 'Weeks 11-12',
+    focus: 'Storytelling, poster design, guardian demo day.',
+    artifact: 'Launchbook + recorded pitch',
+    ratio: '1:12 audience support'
+  }
+];
+
+const tracks = [
+  {
+    label: 'BIO',
+    title: 'Biofoundry Mini',
+    description: 'BSL-1 benchwork, sterile technique, colorimetric assays, ethics of biology.',
+    scope: 'Scope: BSL-1 only'
+  },
+  {
+    label: 'FAB',
+    title: 'Micro Fabrication',
+    description: 'Digital fabrication, PCB milling, rapid prototyping for enclosures and rigs.',
+    scope: 'Scope: No high-temp kilns'
+  },
+  {
+    label: 'DATA',
+    title: 'Computational Lab',
+    description: 'Sensor streams, notebooks, visualization sprints linked to lab results.',
+    scope: 'Scope: Open datasets'
+  },
+  {
+    label: 'FIELD',
+    title: 'Community Fieldwork',
+    description: 'Environmental sampling with community partners, documentation, and local translation.',
+    scope: 'Scope: Observational only'
+  }
+];
+---
+
+<GoogleLayout title="Launchpad | Research for Everyone">
+  <MotionWrapper>
+    <div class="pt-32 pb-12 px-6 max-w-7xl mx-auto">
+      <h1 class="text-6xl md:text-8xl font-display tracking-tight mb-8">
+        Launchpad
+      </h1>
+      <p class="text-2xl md:text-3xl text-gray-600 max-w-3xl mb-16 leading-relaxed">
+        A 12-week hybrid program designed to take students from safety certification to their first mentored research project.
+      </p>
+
+      <!-- Hero Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        {heroStats.map(stat => (
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <div class="text-sm text-gray-500 mb-2 font-medium uppercase tracking-wider">{stat.label}</div>
+            <div class="text-4xl font-display mb-2">{stat.value}</div>
+            <div class="text-gray-600">{stat.detail}</div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Program Stack -->
+      <section class="mb-32">
+        <h2 class="text-4xl font-display mb-12">Program Stack</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {programStack.map(item => (
+            <div class="bg-white border border-gray-200 p-8 rounded-3xl hover:shadow-lg transition-shadow duration-300">
+              <h3 class="text-2xl font-display mb-4">{item.title}</h3>
+              <p class="text-gray-600 mb-6 leading-relaxed">{item.summary}</p>
+              <div class="flex flex-wrap gap-2">
+                {item.chips.map(chip => (
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-full text-sm font-medium">
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="mb-32">
+        <h2 class="text-4xl font-display mb-12">Timeline</h2>
+        <div class="space-y-8">
+          {timelinePhases.map(phase => (
+            <div class="bg-gray-50 p-8 rounded-3xl grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+              <div class="md:col-span-3">
+                <div class="text-sm text-blue-600 font-bold uppercase tracking-wider mb-1">{phase.phase}</div>
+                <div class="text-2xl font-display mb-2">{phase.title}</div>
+                <div class="text-gray-500 font-medium">{phase.week}</div>
+              </div>
+              <div class="md:col-span-6">
+                <div class="text-lg text-gray-800 mb-2">{phase.focus}</div>
+                <div class="text-gray-600 text-sm">Artifact: {phase.artifact}</div>
+              </div>
+              <div class="md:col-span-3 text-right md:text-right text-gray-500 text-sm font-medium">
+                {phase.ratio}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Tracks -->
+      <section class="mb-24">
+        <h2 class="text-4xl font-display mb-12">Research Tracks</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {tracks.map(track => (
+            <div class="bg-white border border-gray-200 p-8 rounded-3xl">
+              <div class="flex items-center justify-between mb-6">
+                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-bold tracking-wide">
+                  {track.label}
+                </span>
+                <span class="text-gray-400 text-sm">{track.scope}</span>
+              </div>
+              <h3 class="text-2xl font-display mb-4">{track.title}</h3>
+              <p class="text-gray-600 leading-relaxed">{track.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div class="bg-blue-600 text-white p-12 rounded-3xl text-center">
+        <h2 class="text-3xl md:text-4xl font-display mb-6">Ready to launch?</h2>
+        <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          Join the next cohort of student researchers. Applications are open for the upcoming season.
+        </p>
+        <a href="/contact" class="inline-block bg-white text-blue-600 px-8 py-4 rounded-full font-medium text-lg hover:bg-blue-50 transition-colors">
+          Apply Now
+        </a>
+      </div>
+
+    </div>
+  </MotionWrapper>
+</GoogleLayout>

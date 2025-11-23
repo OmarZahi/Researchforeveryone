@@ -1,0 +1,42 @@
+---
+import GoogleLayout from '../../layouts/GoogleLayout.astro';
+import MotionWrapper from '../../components/animations/MotionWrapper.astro';
+import ProgramSubNav from '../../components/program/ProgramSubNav.astro';
+import { staff } from "../../data/program";
+---
+
+<GoogleLayout title="Staff | Research Fellowship">
+  <ProgramSubNav current="staff" />
+  
+  <MotionWrapper>
+    <div class="pt-12 pb-24 px-6 max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-16">
+        <h1 class="text-5xl md:text-7xl font-display tracking-tight mb-6">
+          Staff
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 leading-relaxed">
+          Meet the mentors and operators. Each person below brings lab management, safety, or learning design experience.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {staff.map((person) => (
+          <article class="bg-white border border-gray-200 p-8 rounded-3xl hover:shadow-lg transition-shadow duration-300 text-center">
+            <div class="w-24 h-24 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl font-display mx-auto mb-6" aria-hidden="true">
+              {person.name[0]}
+            </div>
+            <h3 class="text-2xl font-display mb-2">{person.name}</h3>
+            <p class="text-blue-600 font-medium mb-4">{person.role}</p>
+            <p class="text-gray-600 text-sm mb-6">{person.expertise}</p>
+            {person.link && (
+              <a href={person.link} class="inline-flex items-center text-gray-500 hover:text-blue-600 transition-colors font-medium text-sm">
+                LinkedIn 
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </MotionWrapper>
+</GoogleLayout>

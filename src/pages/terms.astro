@@ -1,0 +1,33 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+
+<GoogleLayout title="Terms of Use | Research for Everyone" description="Terms of use for Research for Everyone.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Terms of Use
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          Please read these terms carefully before using our services.
+        </p>
+      </MotionWrapper>
+
+      <MotionWrapper animation="fade-up" delay={0.2}>
+        <div class="prose prose-lg prose-blue max-w-3xl text-gray-600">
+          <p>
+            This website and associated programs are provided for educational purposes. We strive to ensure accuracy, but we make no warranties regarding the completeness or reliability of the information.
+          </p>
+          <p>
+            Participation in lab sessions is subject to safety rules and supervision policies which must be followed at all times. We reserve the right to refuse or revoke access to any individual who fails to comply.
+          </p>
+          <p>
+            By using this site or enrolling in our programs, you agree to these terms. These terms may change, and continued use of the site constitutes acceptance of the revised terms.
+          </p>
+        </div>
+      </MotionWrapper>
+    </section>
+  </div>
+</GoogleLayout>

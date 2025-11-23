@@ -1,0 +1,37 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+
+<GoogleLayout title="Code of Conduct | Research for Everyone" description="Code of conduct for participants and hosts.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Code of Conduct
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          We aim to create a welcoming, inclusive and safe environment for everyone.
+        </p>
+      </MotionWrapper>
+
+      <MotionWrapper animation="fade-up" delay={0.2}>
+        <div class="prose prose-lg prose-blue max-w-3xl text-gray-600">
+          <p class="mb-6">All participants, mentors and hosts in Research for Everyone are expected to:</p>
+          <ul class="list-disc pl-6 space-y-3">
+            <li>Act respectfully toward others, regardless of background or identity.</li>
+            <li>Follow all safety rules, instructions and standard operating procedures.</li>
+            <li>Use equipment and materials responsibly and report any damage or hazards immediately.</li>
+            <li>Refrain from harassment, discrimination, intimidation or disruptive behavior.</li>
+            <li>Take responsibility for your own actions and ask for help when unsure.</li>
+            <li>Respect privacy; do not photograph or record others without explicit consent.</li>
+            <li>Report any violations of this code to a supervisor or through our incident reporting form.</li>
+          </ul>
+          <p class="mt-8">
+            Failure to abide by this code may result in removal from the program and revocation of the Lab Readiness Passport. We appreciate your cooperation in making our community positive and productive.
+          </p>
+        </div>
+      </MotionWrapper>
+    </section>
+  </div>
+</GoogleLayout>

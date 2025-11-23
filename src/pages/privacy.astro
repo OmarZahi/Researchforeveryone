@@ -1,0 +1,33 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+
+<GoogleLayout title="Privacy Policy | Research for Everyone" description="Privacy policy for Research for Everyone.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Privacy Policy
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          We respect your privacy and are committed to protecting your personal data.
+        </p>
+      </MotionWrapper>
+
+      <MotionWrapper animation="fade-up" delay={0.2}>
+        <div class="prose prose-lg prose-blue max-w-3xl text-gray-600">
+          <p>
+            This website collects only the information necessary to provide our services, such as names, email addresses and consent status. We do not sell your data and only share it with partner labs to facilitate bookings and ensure safety compliance.
+          </p>
+          <p>
+            For minors, guardian consent information is stored as required by law. We may collect usage statistics to improve our services, but these are anonymized and do not identify individual users.
+          </p>
+          <p>
+            If you have questions or would like us to delete your data, please <a href="/contact">contact us</a>.
+          </p>
+        </div>
+      </MotionWrapper>
+    </section>
+  </div>
+</GoogleLayout>
