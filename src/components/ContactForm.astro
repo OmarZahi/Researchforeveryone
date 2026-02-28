@@ -1,0 +1,63 @@
+---
+export interface Props {
+  endpoint?: string;
+  compact?: boolean;
+}
+const { endpoint = 'https://formspree.io/f/mzzvqeyk', compact = false } = Astro.props;
+---
+<form class="ajax-form" data-form-endpoint={endpoint} class:list={{ compact }} onsubmit="event.preventDefault();">
+  <div class="fields">
+    <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
+    <input type="email" name="email" placeholder="Your email" autocomplete="email" required />
+    {!compact && (<input type="text" name="subject" placeholder="Subject" />)}
+    <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+    <!-- Honeypot field for spam bots -->
+    <input type="text" name="company" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true" />
+    <button type="submit" class="btn primary">Send</button>
+    <div class="form-status" aria-live="polite"></div>
+  </div>
+  <script is:inline>
+  (function(init){
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+    else init();
+  })(() => {
+    const enhance = (form) => {
+      if (!form || form.dataset.enhanced === '1') return;
+      form.dataset.enhanced = '1';
+      const status = form.querySelector('.form-status');
+      const endpoint = form.getAttribute('data-form-endpoint') || '';
+      const honeypot = form.querySelector('input[name="company"]');
+  form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (honeypot && honeypot.value) { if (status) status.textContent = 'Thanks!'; form.reset(); return; }
+        if (!endpoint) { if (status) status.textContent = 'Thanks! Your message was captured locally.'; form.reset(); return; }
+        const formData = new FormData(form);
+        if (status) { status.style.color = 'var(--ink-500)'; status.textContent = 'Sending…'; }
+        fetch(endpoint, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' }})
+          .then((res) => {
+            if (res.ok) {
+              if (status) { status.style.color = 'var(--p-600)'; status.textContent = 'Thank you! We\'ll be in touch.'; }
+              form.reset();
+            } else {
+              return res.json().catch(() => ({})).then((data) => { throw new Error(data.error || 'Submission failed.'); });
+            }
+          })
+          .catch((err) => {
+            if (status) { status.style.color = '#b00020'; status.textContent = 'Oops, something went wrong. Please email Omar.2123039@stemobour.moe.edu.eg'; }
+            console.error(err);
+          });
+  }, { capture: true });
+    };
+    document.querySelectorAll('form.ajax-form').forEach(enhance);
+  });
+  </script>
+  <style>
+  form.ajax-form .fields { display: flex; flex-direction: column; gap: 12px; max-width: 520px; }
+  form.ajax-form input, form.ajax-form textarea {
+    padding: 12px; border-radius: var(--radius); border: 1px solid var(--line-200);
+    font: inherit; color: inherit; background: var(--bg-0);
+  }
+  form.ajax-form .honeypot { position: absolute; left: -5000px; opacity: 0; }
+  form.ajax-form .form-status { font-size: 0.95rem; color: var(--ink-500); }
+  </style>
+ </form>

@@ -1,0 +1,120 @@
+---
+// Motion wrapper component for consistent animations
+export interface Props {
+  class?: string;
+  id?: string;
+  animation?: 'fade-up' | 'fade-in' | 'slide-left' | 'slide-right' | 'scale-up' | 'stagger';
+  delay?: number;
+  duration?: number;
+  threshold?: number;
+}
+
+const { 
+  class: className = '', 
+  id,
+  animation = 'fade-up',
+  delay = 0,
+  duration = 0.6,
+  threshold = 0.1
+} = Astro.props;
+---
+
+<div 
+  class={`motion-element ${className}`}
+  id={id}
+  data-animation={animation}
+  data-delay={delay}
+  data-duration={duration}
+  data-threshold={threshold}
+>
+  <slot />
+</div>
+
+<script>
+import { animate, inView, stagger } from 'motion';
+
+// Animation presets
+const animations = {
+  'fade-up': {
+    from: { opacity: 0, transform: 'translateY(20px)' },
+    to: { opacity: 1, transform: 'translateY(0px)' }
+  },
+  'fade-in': {
+    from: { opacity: 0 },
+    to: { opacity: 1 }
+  },
+  'slide-left': {
+    from: { opacity: 0, transform: 'translateX(-20px)' },
+    to: { opacity: 1, transform: 'translateX(0px)' }
+  },
+  'slide-right': {
+    from: { opacity: 0, transform: 'translateX(20px)' },
+    to: { opacity: 1, transform: 'translateX(0px)' }
+  },
+  'scale-up': {
+    from: { opacity: 0, transform: 'scale(0.9)' },
+    to: { opacity: 1, transform: 'scale(1)' }
+  }
+};
+
+// Initialize animations when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motionElements = document.querySelectorAll('.motion-element') as NodeListOf<HTMLElement>;
+
+  motionElements.forEach((element: HTMLElement) => {
+    const animationType = element.dataset.animation;
+    const delay = parseFloat(element.dataset.delay || '0') || 0;
+    const duration = parseFloat(element.dataset.duration || '0.6') || 0.6;
+    const threshold = parseFloat(element.dataset.threshold || '0.1') || 0.1; // 0..1 amount of element in view
+
+    if (reduceMotion) {
+      // Respect reduced motion: jump to end state immediately
+      if (animationType === 'stagger') {
+        Array.from(element.children).forEach((child) => {
+          Object.assign((child as HTMLElement).style, { opacity: '1', transform: 'none' });
+        });
+      } else if (animationType && animations[animationType as keyof typeof animations]) {
+        Object.assign(element.style, animations[animationType as keyof typeof animations].to);
+      }
+      return;
+    }
+
+    if (animationType === 'stagger') {
+      const children = element.children;
+      if (children.length > 0) {
+        Array.from(children).forEach((child: Element) => {
+          const htmlChild = child as HTMLElement;
+          Object.assign(htmlChild.style, { opacity: '0', transform: 'translateY(20px)' });
+        });
+
+        let played = false;
+        inView(element, () => {
+          if (played) return;
+          played = true;
+          setTimeout(() => {
+            animate(
+              Array.from(children),
+              { opacity: 1, transform: 'translateY(0px)' },
+              { delay: stagger(0.1), duration }
+            );
+          }, delay * 1000);
+        }, { amount: Math.min(Math.max(threshold, 0), 1) });
+      }
+    } else if (animationType && animations[animationType as keyof typeof animations]) {
+      Object.assign(element.style, animations[animationType as keyof typeof animations].from);
+
+      let played = false;
+      inView(element, () => {
+        if (played) return;
+        played = true;
+        animate(
+          element,
+          animations[animationType as keyof typeof animations].to,
+          { duration, delay }
+        );
+      }, { amount: Math.min(Math.max(threshold, 0), 1) });
+    }
+  });
+});
+</script>

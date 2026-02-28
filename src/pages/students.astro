@@ -1,0 +1,48 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+---
+
+<GoogleLayout title="Students | Research for Everyone" description="How to earn the Passport, what to expect, and outcomes for students.">
+  <div class="max-w-7xl mx-auto px-6">
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          Learn safely, build your skills.
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed mb-12">
+          Complete the safety course to earn your Lab Readiness Passport. Then book insured, supervised sessions at partner labs.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/passport" class="bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:bg-blue-700 transition-colors">
+            Get the Passport
+          </a>
+          <a href="/sessions" class="bg-gray-100 text-gray-900 px-8 py-4 rounded-full text-lg font-medium hover:bg-gray-200 transition-colors">
+            Find a Session
+          </a>
+        </div>
+      </MotionWrapper>
+    </section>
+
+    <section class="py-24 border-t border-gray-100">
+      <MotionWrapper animation="fade-up">
+        <h2 class="text-3xl md:text-4xl font-medium text-gray-900 mb-16">Why this matters</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Build your portfolio</h3>
+            <p class="text-gray-600 leading-relaxed">Document your work to showcase to mentors and employers.</p>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Demonstrate readiness</h3>
+            <p class="text-gray-600 leading-relaxed">Show you understand safety protocols and are prepared.</p>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-3xl">
+            <h3 class="text-2xl font-medium text-gray-900 mb-4">Unlock opportunities</h3>
+            <p class="text-gray-600 leading-relaxed">Create pathways to internships and research.</p>
+          </div>
+        </div>
+      </MotionWrapper>
+    </section>
+  </div>
+</GoogleLayout>

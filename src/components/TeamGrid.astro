@@ -1,0 +1,77 @@
+---
+import MotionWrapper from './animations/MotionWrapper.astro';
+
+// Team grid with placeholder-friendly defaults
+export interface Member {
+  name: string;
+  title: string;
+  image?: string;
+  linkedin?: string;
+  twitter?: string;
+}
+
+export interface Props {
+  members: Member[];
+  columns?: number; // 2, 3, 4
+}
+
+const { members, columns = 3 } = Astro.props;
+const gridClass = `team-grid team-${columns}`;
+---
+
+<MotionWrapper animation="stagger" class={gridClass}>
+  {members.map((m) => (
+    <article class="card">
+      <img src={m.image || '/img/team-placeholder.png'} alt={`${m.name} headshot`} width="240" height="240" loading="lazy" decoding="async" />
+      <h3>{m.name}</h3>
+      <p class="role">{m.title}</p>
+      {(m.linkedin || m.twitter) && (
+        <p class="links">
+          {m.linkedin && (<a href={m.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on LinkedIn`}>LinkedIn</a>)}
+          {m.twitter && (<a href={m.twitter} target="_blank" rel="noopener noreferrer" aria-label={`${m.name} on Twitter`}>Twitter</a>)}
+        </p>
+      )}
+    </article>
+  ))}
+  
+  {/* Add a couple of empty placeholders to suggest growth */}
+  <article class="card placeholder" aria-hidden="true">
+    <img src="/img/team-placeholder.png" alt="" width="240" height="240" />
+    <h3>Coming soon</h3>
+    <p class="role">Join our mission</p>
+  </article>
+  <article class="card placeholder" aria-hidden="true">
+    <img src="/img/team-placeholder.png" alt="" width="240" height="240" />
+    <h3>Coming soon</h3>
+    <p class="role">Join our mission</p>
+  </article>
+</MotionWrapper>
+
+<style>
+.team-grid { display: grid; gap: 24px; }
+.team-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.team-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.team-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+.card { background: var(--bg-0); border: 1px solid var(--line-200); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px; text-align: center; transition: transform .2s ease, box-shadow .2s ease; }
+.card:hover { transform: translateY(-4px); box-shadow: 0 12px 34px rgba(11,18,32,0.12); }
+.card img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 12px auto;
+}
+.card h3 { margin: 10px 0 6px 0; font-size: 1.1rem; color: var(--ink-900); letter-spacing: .2px; }
+.card .role { margin: 0; color: var(--ink-500); font-size: 0.95rem; }
+.card .links { margin-top: 8px; display: flex; gap: 12px; justify-content: center; }
+.card .links a { font-size: 0.9rem; color: var(--p-600); border-bottom: 1px solid transparent; }
+.card .links a:hover { border-bottom-color: var(--p-600); }
+
+.card.placeholder { opacity: 0.75; }
+
+@media (max-width: 768px) {
+  .team-2, .team-3, .team-4 { grid-template-columns: 1fr; }
+}
+</style>

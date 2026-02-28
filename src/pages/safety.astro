@@ -1,0 +1,103 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+
+const policies = [
+  {
+    title: 'Scope',
+    items: [
+      {
+        subtitle: 'Allowed',
+        text: 'Biosafety Level‑1 biology (no pathogens), basic digital fabrication such as 3D printing and laser cutting, basic electronics and soldering.'
+      },
+      {
+        subtitle: 'Not allowed',
+        text: 'No BSL‑2+ work or pathogens, no hazardous or volatile chemistry, no pressurized or high‑energy systems, and absolutely no unsupervised access.'
+      }
+    ]
+  },
+  {
+    title: 'Supervision ratios',
+    items: [
+      {
+        subtitle: 'Fabrication tools',
+        text: 'Maximum of 1 supervisor per 8 students; stricter ratios may apply based on host policies and tool complexity.'
+      },
+      {
+        subtitle: 'Wet benches',
+        text: 'Maximum of 1 supervisor per 4 students. For instrument demos, only trained operators handle the equipment.'
+      }
+    ]
+  },
+  {
+    title: 'PPE & conduct',
+    items: [
+      {
+        subtitle: 'PPE',
+        text: 'Follow host lab policies for goggles, gloves, lab coats and other protective equipment. We supply standard PPE for each session.'
+      },
+      {
+        subtitle: 'Dress code',
+        text: 'Wear long pants, closed shoes and tie back long hair. No loose clothing or dangling jewelry. Food and drink are prohibited in lab spaces.'
+      },
+      {
+        subtitle: 'Conduct',
+        text: 'Always listen to supervisors, respect others and equipment, and follow the code of conduct. Harassment or unsafe behavior is grounds for removal.'
+      }
+    ]
+  },
+  {
+    title: 'Consent & minors',
+    items: [
+      {
+        subtitle: 'Guardian consent',
+        text: 'Anyone under 18 must provide a signed consent and waiver form from a parent or legal guardian before enrolling or booking a session.'
+      },
+      {
+        subtitle: 'Chaperones',
+        text: 'A named adult chaperone must accompany each minor participant during sessions and is responsible for their conduct.'
+      },
+      {
+        subtitle: 'Media & data',
+        text: 'Photography is opt‑in only. We respect data privacy and only collect the minimum necessary information. Host labs retain instrument data; students own their notes.'
+      }
+    ]
+  }
+];
+---
+
+<GoogleLayout title="Safety & Policies | Research for Everyone">
+  <MotionWrapper>
+    <div class="pt-32 pb-12 px-6 max-w-7xl mx-auto">
+      <h1 class="text-6xl md:text-8xl font-display tracking-tight mb-8">
+        Safety & Policies
+      </h1>
+      <p class="text-2xl md:text-3xl text-gray-600 max-w-3xl mb-16 leading-relaxed">
+        Strict safety policies ensure everyone is protected. Learn what’s allowed, required and expected.
+      </p>
+
+      <div class="space-y-24">
+        {policies.map(section => (
+          <section>
+            <h2 class="text-4xl font-display mb-12 border-b border-gray-200 pb-6">{section.title}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {section.items.map(item => (
+                <div class="bg-gray-50 p-8 rounded-3xl">
+                  <h3 class="text-xl font-bold mb-4 text-gray-900">{item.subtitle}</h3>
+                  <p class="text-gray-600 leading-relaxed">{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <section class="bg-red-50 p-12 rounded-3xl border border-red-100">
+          <h2 class="text-3xl font-display mb-6 text-red-800">Incident reporting</h2>
+          <p class="text-lg text-red-700 leading-relaxed max-w-4xl">
+            If an accident or safety violation occurs, report it immediately to the supervisor on duty. All incidents must be documented within 24 hours using our incident form. You can also use the form for anonymous conduct concerns.
+          </p>
+        </section>
+      </div>
+    </div>
+  </MotionWrapper>
+</GoogleLayout>

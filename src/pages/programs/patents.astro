@@ -1,0 +1,68 @@
+---
+import GoogleLayout from '../../layouts/GoogleLayout.astro';
+import MotionWrapper from '../../components/animations/MotionWrapper.astro';
+import ProgramSubNav from '../../components/program/ProgramSubNav.astro';
+import { patentHighlights } from "../../data/program";
+---
+
+<GoogleLayout title="Patents | Research Fellowship">
+  <ProgramSubNav current="patents" />
+  
+  <MotionWrapper>
+    <div class="pt-12 pb-24 px-6 max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-16">
+        <h1 class="text-5xl md:text-7xl font-display tracking-tight mb-6">
+          Patents
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 leading-relaxed">
+          IP support for fellows who need it. Not every project should become a patent, but when it makes sense we help with prior-art checks, clinics, and shared filing fees.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
+        <div class="lg:col-span-4">
+          <div class="bg-blue-50 p-8 rounded-3xl sticky top-32">
+            <h3 class="text-2xl font-display mb-6 text-blue-900">How it works</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span class="text-blue-500 mt-1">●</span>
+                <span class="text-blue-800">We start with a plain-language review to confirm novelty.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-blue-500 mt-1">●</span>
+                <span class="text-blue-800">Placeholder legal partners host office hours each term.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-blue-500 mt-1">●</span>
+                <span class="text-blue-800">Mini-grants cover provisional filings for selected teams.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8">
+          {patentHighlights.length > 0 ? (
+          <div class="grid grid-cols-1 gap-6">
+            {patentHighlights.map((item) => (
+              <article class="bg-white border border-gray-200 p-8 rounded-3xl hover:shadow-lg transition-shadow duration-300">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                  <h3 class="text-2xl font-display">{item.title}</h3>
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                    {item.status}
+                  </span>
+                </div>
+                <p class="text-gray-600 mb-6 leading-relaxed">{item.desc}</p>
+              </article>
+            ))}
+          </div>
+          ) : (
+            <div class="bg-white border border-gray-200 p-12 rounded-3xl text-center">
+              <h3 class="text-2xl font-display mb-4">No filings yet</h3>
+              <p class="text-gray-600">Patent filings from our fellows will be listed here as they are processed.</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </MotionWrapper>
+</GoogleLayout>

@@ -1,0 +1,45 @@
+/* Main stylesheet - imports modular CSS following Astro best practices */
+
+/* Base styles and variables */
+@import url('./base.css');
+
+/* Component styles now live inside their .astro files where possible.
+  Keep only truly global styles here. */
+
+/* Buttons (global) */
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: var(--radius); font-weight: 600; cursor: pointer; transition: background-color .2s ease, color .2s ease, border-color .2s ease; border: 2px solid transparent; }
+.btn.primary { background-color: var(--p-600); color: #ffffff; }
+.btn.primary:hover { background-color: var(--p-700); }
+.btn.outline { background-color: transparent; color: var(--p-600); border-color: var(--p-600); }
+.btn.outline:hover { background-color: var(--p-100); }
+
+/* The typewriter caret animations */
+#hero-typed { 
+  display: none; 
+}
+
+/* Allow typed headline to wrap on small screens */
+@media (max-width: 768px) {
+  #hero-typed { 
+    white-space: normal; 
+    word-break: break-word; 
+    display: inline; 
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .motion-element {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .hero::before, 
+  .hero::after {
+    animation: none !important;
+  }
+  
+  .partner-slider .slide-track {
+    animation: none !important;
+  }
+}

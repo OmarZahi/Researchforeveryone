@@ -1,0 +1,44 @@
+---
+import { programNav } from '../../data/program';
+
+interface Props {
+  current: string;
+}
+
+const { current } = Astro.props;
+---
+
+<nav class="border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-[72px] z-40">
+  <div class="max-w-7xl mx-auto w-full px-6 xl:pl-0 overflow-x-auto no-scrollbar">
+    <ul class="flex gap-8 min-w-max">
+      <li>
+        <a 
+          href="/programs/overview" 
+          class={`block py-4 text-sm font-medium border-b-2 transition-colors ${current === 'overview' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-900'}`}
+        >
+          Overview
+        </a>
+      </li>
+      {programNav.map((link) => (
+        <li>
+          <a 
+            href={link.href} 
+            class={`block py-4 text-sm font-medium border-b-2 transition-colors ${current === link.id ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-900'}`}
+          >
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>

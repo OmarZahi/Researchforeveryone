@@ -1,0 +1,53 @@
+---
+import GoogleLayout from '../layouts/GoogleLayout.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+import TeamGrid from '../components/TeamGrid.astro';
+
+const teamMembers = []; // Assuming empty array as per original file
+---
+
+<GoogleLayout title="About | Research for Everyone" description="Learn about our mission and approach to safe, supervised lab access.">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Hero -->
+    <section class="py-24">
+      <MotionWrapper animation="fade-up">
+        <h1 class="text-5xl md:text-7xl font-medium tracking-tight text-gray-900 mb-8">
+          About Research for Everyone
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl leading-relaxed">
+          Our mission is to enable the next generation of makers and scientists with practical, supervised lab time without compromising safety.
+        </p>
+      </MotionWrapper>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-24 border-t border-gray-100">
+      <MotionWrapper animation="fade-up">
+        <h2 class="text-3xl md:text-4xl font-medium text-gray-900 mb-6">Our team</h2>
+        <p class="text-xl text-gray-600 mb-12 max-w-2xl">
+          A growing network of mentors and partner lab operators supports our small core team.
+        </p>
+        <TeamGrid members={teamMembers} columns={3} />
+      </MotionWrapper>
+    </section>
+
+    <!-- Mission & Approach -->
+    <section class="py-24 border-t border-gray-100">
+      <div class="grid md:grid-cols-2 gap-16">
+        <MotionWrapper animation="fade-up">
+          <h2 class="text-3xl md:text-4xl font-medium text-gray-900 mb-6">Mission</h2>
+          <p class="text-lg text-gray-600 leading-relaxed">
+            Research for Everyone exists to make hands‑on science accessible. We provide a clear pathway for students and early‑career researchers to get real laboratory experience through standardized safety training and supervised sessions at partner labs.
+          </p>
+        </MotionWrapper>
+
+        <MotionWrapper animation="fade-up" delay={0.2}>
+          <h2 class="text-3xl md:text-4xl font-medium text-gray-900 mb-6">Approach</h2>
+          <p class="text-lg text-gray-600 leading-relaxed">
+            We align with each host lab’s SOPs, enforce strict supervision ratios and access controls, and keep all activities within BSL‑1 and basic digital fabrication tools.
+          </p>
+        </MotionWrapper>
+      </div>
+    </section>
+  </div>
+</GoogleLayout>

@@ -1,0 +1,14 @@
+---
+---
+<style>
+  .badge{display:inline-flex;flex-direction:column;align-items:center;padding:0.9rem 1.1rem;border-radius:0.85rem;background:linear-gradient(135deg,#ffffff,#e0f2ff);border:1px solid rgba(37,99,235,0.15);box-shadow:0 12px 30px rgba(37,99,235,0.15);color:#0f172a}
+  .badge svg{width:56px;height:56px}
+  .badge small{color:#4c5874}
+</style>
+
+<div class="badge">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3" fill="#38bdf8"/><path d="M4 20c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6" stroke="#2563eb" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div style="height:8px"></div>
+  <strong><slot name="title">Research Badge</slot></strong>
+  <small><slot name="sub">Evidence-based project</slot></small>
+</div>
