@@ -1,0 +1,287 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import MotionWrapper from '../components/animations/MotionWrapper.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Counter from '../components/Counter.astro';
+
+// Define content data for components
+const howItWorksFeatures = [
+  { title: 'Train', description: 'Complete a 3–4 hour safety course and pass the exam.' },
+  { title: 'Badge', description: 'Receive a 12‑month Lab Readiness Passport as proof of readiness.' },
+  { title: 'Book', description: 'Join supervised, pre‑approved sessions at partner labs.' }
+];
+
+const programFeatures = [
+  { title: 'Passport training', description: '3–4 hour standardized safety class plus exam.' },
+  { title: 'Operator sessions', description: 'Fixed ratios and pre‑approved activities at partner labs.' },
+  { title: 'Portfolio builder', description: 'Attendance records and project snapshots to showcase your work.' },
+  { title: 'Mentorship', description: 'Optional 1:1 or group office hours with experts.' },
+  { title: 'School packs', description: 'Discount bundles for classrooms and cohorts.' },
+  { title: 'Outreach days', description: 'Low‑risk demos and open lab tours for the community.' }
+];
+
+const audienceFeatures = [
+  { title: 'High school students', description: 'With guardian consent; learn hands‑on safely.' },
+  { title: 'Undergraduates', description: 'Supplement your coursework with real lab experience.' },
+  { title: 'Recent graduates', description: 'Build your portfolio and bridge to industry or research.' }
+];
+
+const safetyFeatures = [
+  { title: 'No BSL‑2+ or pathogens', description: 'Only basic biosafety level‑1 work is permitted.' },
+  { title: 'No hazardous chemistry', description: 'No volatile, reactive or pressurized systems.' },
+  { title: 'No unsupervised access', description: 'All sessions include named operators and fixed ratios.' }
+];
+
+const partnerFeatures = [
+  { title: 'Risk controls', description: 'BSL‑1 & basic fab only; strict supervision ratios; your rules first.' },
+  { title: 'Insurance & paperwork', description: 'Waivers, certificates and visitor badges simplified.' },
+  { title: 'Economics', description: 'Choose revenue share on sessions or fixed facility fees with consumables at cost.' }
+];
+
+const passportFeatures = [
+  { title: 'Modules', description: 'General lab safety, BSL‑1 biosafety, basic electrical/mechanical safety, code of conduct, waste disposal.' },
+  { title: 'Assessment', description: 'Mix of quiz and hands‑on demonstration; badges are valid for 12 months.' },
+  { title: 'Parental consent', description: 'Under‑18 participants require guardian signatures and a chaperone.' }
+];
+
+const testimonialFeatures = [
+  { title: '', description: '"As a lab manager, partnering with Research for Everyone has been straightforward and rewarding. Their students arrive prepared and respectful of our space." — A. Elsayed, Fab Lab Director' },
+  { title: '', description: '"The Passport program gave our students the confidence to handle equipment safely. It\'s exactly what schools have been missing." — H. Fawzy, High School Teacher' },
+  { title: '', description: '"I never imagined I could work in a real lab before college. Now I\'ve completed three sessions and feel ready for internships." — M. Ahmed, Student' }
+];
+---
+<BaseLayout title="Research for Everyone | Safe, supervised lab access" description="Standardized safety training and operator-led lab sessions for students and early researchers.">
+  <a href="#home" class="skip-link">Skip to content</a>
+  <Header active="home" />
+
+  <main>
+    <!-- Hero Section with Motion One animations -->
+    <Hero 
+      title="Safe, supervised lab access."
+      subtitle="Standardized safety training and operator‑led sessions for students and early researchers."
+      primaryCta={{ text: "Get the Passport", href: "passport.html" }}
+      secondaryCta={{ text: "Partner your Lab", href: "labs.html" }}
+    />
+
+    <!-- How it works -->
+    <MotionWrapper animation="fade-up" threshold={0.2}>
+      <section id="how">
+        <div class="container">
+          <h2>How it works</h2>
+          <p class="sub">We make safe lab access simple: learn safety, earn a badge, and book supervised sessions.</p>
+          <FeatureGrid features={howItWorksFeatures} />
+        </div>
+      </section>
+    </MotionWrapper>
+
+    <!-- Metrics Section -->
+    <MotionWrapper animation="fade-up" threshold={0.3}>
+      <section id="metrics">
+        <div class="container">
+          <h2>Our impact</h2>
+          <p class="sub">Small steps with measurable progress.</p>
+          <div class="metrics">
+            <Counter target={12} label="Partner labs" />
+            <Counter target={200} label="Students trained" />
+            <Counter target={45} label="Supervised sessions" />
+          </div>
+        </div>
+      </section>
+    </MotionWrapper>
+        <div class="metrics">
+        <div class="metrics">
+          <div class="metric">
+            <span class="count" data-target="12">0</span>
+            <p>Partner labs</p>
+          </div>
+          <div class="metric">
+            <span class="count" data-target="200">0</span>
+            <p>Students trained</p>
+          </div>
+          <div class="metric">
+            <span class="count" data-target="45">0</span>
+            <p>Supervised sessions</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs -->
+    <MotionWrapper animation="stagger" threshold={0.2}>
+      <section id="programs">
+        <div class="container">
+          <h2>Programs</h2>
+          <FeatureGrid features={programFeatures} columns={2} />
+        </div>
+      </section>
+    </MotionWrapper>
+
+    <!-- Product Section -->
+    <MotionWrapper animation="fade-up" threshold={0.3}>
+      <section id="product">
+        <div class="container">
+          <div class="product">
+            <img src="assets/img/product.png" alt="Illustration of lab equipment" loading="lazy" decoding="async" />
+            <div class="product-content">
+              <h3>Our product</h3>
+            <p>The Lab Readiness Passport and our supervised sessions combine rigorous training with safe, hands‑on practice. Earn your badge and then step into real labs under expert supervision.</p>
+            <p>We handle the logistics—insurance, waivers, scheduling and compliance—so labs can say “yes” without extra work and students can focus on learning.</p>
+            <div class="btn-row">
+              <a href="passport.html" class="btn primary">Get the Passport</a>
+              <a href="labs.html" class="btn outline">Partner your Lab</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </MotionWrapper>
+
+    <!-- Audience -->
+    <MotionWrapper animation="slide-left" threshold={0.3}>
+      <section id="students">
+        <div class="container">
+          <h2>Who it's for</h2>
+          <p class="sub">We welcome everyone eager to learn.</p>
+          <FeatureGrid features={audienceFeatures} />
+        </div>
+      </section>
+    </MotionWrapper>
+
+    <!-- Restrictions -->
+    <section id="safety" class="reveal">
+      <div class="container">
+        <h2>What we don’t do</h2>
+        <p class="sub">To keep you and our partners safe, we limit scope:</p>
+        <div class="features">
+          <div class="feature">
+            <h3>No BSL‑2+ or pathogens</h3>
+            <p>Only basic biosafety level‑1 work is permitted.</p>
+          </div>
+          <div class="feature">
+            <h3>No hazardous chemistry</h3>
+            <p>No volatile, reactive or pressurized systems.</p>
+          </div>
+          <div class="feature">
+            <h3>No unsupervised access</h3>
+            <p>All sessions include named operators and fixed ratios.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Labs & Partners -->
+    <section id="labs" class="reveal">
+      <div class="container">
+        <h2>Partner with us</h2>
+        <p class="sub">Off‑peak revenue on idle capacity, pre‑trained visitors, and admin handled.</p>
+        <div class="features">
+          <div class="feature">
+            <h3>Risk controls</h3>
+            <p>BSL‑1 & basic fab only; strict supervision ratios; your rules first.</p>
+          </div>
+          <div class="feature">
+            <h3>Insurance & paperwork</h3>
+            <p>Waivers, certificates and visitor badges simplified.</p>
+          </div>
+          <div class="feature">
+            <h3>Economics</h3>
+            <p>Choose revenue share on sessions or fixed facility fees with consumables at cost.</p>
+          </div>
+        </div>
+        <div class="cta-row" style="margin-top:32px;">
+          <a href="contact.html" class="btn primary">Apply to partner</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Passport Section -->
+    <section id="passport" class="reveal">
+      <div class="container">
+        <h2>Lab Readiness Passport</h2>
+        <p class="sub">A concise safety curriculum plus exam to earn your readiness badge.</p>
+        <div class="features">
+          <div class="feature">
+            <h3>Modules</h3>
+            <p>General lab safety, BSL‑1 biosafety, basic electrical/mechanical safety, code of conduct, waste disposal.</p>
+          </div>
+          <div class="feature">
+            <h3>Assessment</h3>
+            <p>Mix of quiz and hands‑on demonstration; badges are valid for 12 months.</p>
+          </div>
+          <div class="feature">
+            <h3>Parental consent</h3>
+            <p>Under‑18 participants require guardian signatures and a chaperone.</p>
+          </div>
+        </div>
+        <div class="cta-row" style="margin-top:32px;">
+          <a href="contact.html" class="btn primary">Enroll now</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="reveal">
+      <div class="container">
+        <h2>Voices from the community</h2>
+        <div class="features">
+          <div class="feature">
+            <p>“As a lab manager, partnering with Research for Everyone has been straightforward and rewarding. Their students arrive prepared and respectful of our space.”</p>
+            <strong style="display:block;margin-top:8px;">— A. Elsayed, Fab Lab Director</strong>
+          </div>
+          <div class="feature">
+            <p>“The Passport program gave our students the confidence to handle equipment safely. It’s exactly what schools have been missing.”</p>
+            <strong style="display:block;margin-top:8px;">— H. Fawzy, High School Teacher</strong>
+          </div>
+          <div class="feature">
+            <p>“I never imagined I could work in a real lab before college. Now I’ve completed three sessions and feel ready for internships.”</p>
+            <strong style="display:block;margin-top:8px;">— M. Ahmed, Student</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="reveal partners-section">
+      <div class="container">
+        <h2>Our partners</h2>
+        <p class="sub">Organisations that support hands‑on research access.</p>
+        <div class="partner-slider">
+          <div class="slide-track">
+            <img src="assets/img/partners/partner1.png" alt="Partner 1" loading="lazy" decoding="async" />
+            <img src="assets/img/partners/partner2.png" alt="Partner 2" loading="lazy" decoding="async" />
+            <img src="assets/img/partners/partner3.png" alt="Partner 3" loading="lazy" decoding="async" />
+            <!-- duplicate for seamless looping -->
+            <img src="assets/img/partners/partner1.png" alt="Partner 1" loading="lazy" decoding="async" />
+            <img src="assets/img/partners/partner2.png" alt="Partner 2" loading="lazy" decoding="async" />
+            <img src="assets/img/partners/partner3.png" alt="Partner 3" loading="lazy" decoding="async" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section removed from home page to avoid repetition; visit faq.html for full answers -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <h2>Get in touch</h2>
+        <p class="sub">Interested in partnering, mentoring or joining a pilot? We’d love to hear from you.</p>
+        <p>Email us at <a href="mailto:hello@researchforeveryone.org">hello@researchforeveryone.org</a> or fill out our simple interest form below.</p>
+  <form class="ajax-form" data-form-endpoint="https://formspree.io/f/mzzvqeyk" style="max-width:500px;margin-top:24px;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);" />
+            <input type="email" name="email" placeholder="Your email" autocomplete="email" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);" />
+            <textarea name="message" placeholder="Tell us a bit about your interests" rows="4" required style="padding:12px;border-radius:var(--radius);border:1px solid var(--line-200);"></textarea>
+            <!-- Honeypot field for spam bots -->
+            <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-5000px;opacity:0;" aria-hidden="true" />
+            <button type="submit" class="btn primary" style="width:fit-content;">Send</button>
+            <div class="form-status" aria-live="polite" style="font-size:0.95rem;color:var(--ink-500);"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
